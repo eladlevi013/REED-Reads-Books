@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".History">
 
+    <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/sum_tv"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Sum Of The Time "
+        android:textSize="15dp"></TextView>
+
+    <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/average_tv"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/sum_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Average Of The Time "
+        android:textSize="15dp"></TextView>
+
+    <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/sumMonth_tv"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/average_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Sum Of The Month"
+        android:textSize="15dp"></TextView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +53,9 @@
         app:itemBackground="@color/design_default_color_primary_dark"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ListView
+        android:layout_marginTop="25dp"
         android:id="@+id/ls"
+        android:layout_below="@+id/sumMonth_tv"
         android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>

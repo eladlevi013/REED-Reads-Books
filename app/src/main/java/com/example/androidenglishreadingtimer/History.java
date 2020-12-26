@@ -23,14 +23,16 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
 public class History extends AppCompatActivity {
 
-    public ArrayList<Result> GlobalArrayList;
-    ListView listView;
+    public ArrayList<Result> GlobalArrayList = null;
+    public ListView listView;
+    public TextView totalTime, averageTime, monthSum_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +79,55 @@ public class History extends AppCompatActivity {
         });  // END OF NAVIGATION SETUP
 
 
-        //Toast.makeText(History.this, GlobalArrayList.toString(), Toast.LENGTH_SHORT).show();
+        double totalSum = Math.floor(arraySum(GlobalArrayList) * 100) / 100;
+        totalTime = findViewById(R.id.sum_tv);
+        totalTime.setText("Total Time: " + totalSum + " min");
+
+        double averageTimePerRead = totalSum/GlobalArrayList.size();
+        averageTimePerRead = Math.floor(averageTimePerRead * 100) / 100;
+        averageTime = findViewById(R.id.average_tv);
+        averageTime.setText("Average reading time: " + averageTimePerRead + " min");
+
+        double monthSum = monthSumFunction(GlobalArrayList);
+        monthSum_tv = findViewById(R.id.sumMonth_tv);
+        monthSum =  Math.floor(monthSum * 100) / 100;
+        monthSum_tv.setText("This month: " + monthSum + " min");
 
         Collections.reverse(GlobalArrayList);
-
         listView = findViewById(R.id.ls);
         listView.setAdapter(new MyCustomBaseAdapter(this, GlobalArrayList));
+        //Toast.makeText(this, "sum: " + arraySum(GlobalArrayList), Toast.LENGTH_SHORT).show();
+    }
+
+    public static double monthSumFunction(ArrayList<Result> arrayList){
+        double sum = 0;
+        int i=0;
+
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+
+        while(i < arrayList.size()){
+            int arrayMonth = arrayList.get(i).getDate().getMonth() + 1;
+            int arrayYear = arrayList.get(i).getDate().getYear() + 1900;
+
+            if (arrayMonth == month && arrayYear == year){
+                sum += arrayList.get(i).getChronmeter();
+            }
+
+            i++;
+        }
+        return sum;
+    }
+
+    public static double arraySum(ArrayList<Result> arrayList){
+        double sum=0;
+
+        for (int i=0; i<arrayList.size(); i++) {
+            sum += arrayList.get(i).getChronmeter();
+        }
+
+        return sum;
     }
 
 //    public static ArrayList<Result> createRandomList() {
@@ -133,7 +178,7 @@ public class History extends AppCompatActivity {
             Date date = searchArrayList.get(position).getDate();
             //java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy, HH:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
             String formattedDate = sdf.format(date);
 
             holder.txtName.setText("Date: " + formattedDate);
