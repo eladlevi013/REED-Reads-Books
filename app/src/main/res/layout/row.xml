@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
         android:id="@+id/time_tv"
@@ -13,6 +14,7 @@
         android:textSize="20dp"></TextView>
 
     <TextView
+        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:id="@+id/date_tv"
