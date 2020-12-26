@@ -21,9 +21,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 public class History extends AppCompatActivity {
 
@@ -128,8 +130,14 @@ public class History extends AppCompatActivity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            holder.txtName.setText("Date: " + searchArrayList.get(position).getDate().toString());
-            holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter().toString());
+            Date date = searchArrayList.get(position).getDate();
+            //java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy, HH:ss");
+            String formattedDate = sdf.format(date);
+
+            holder.txtName.setText("Date: " + formattedDate);
+            holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter().toString() + " minutes");
 
             return convertView;
         }
