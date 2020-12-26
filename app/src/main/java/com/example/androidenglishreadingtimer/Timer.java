@@ -149,7 +149,7 @@ public class Timer extends AppCompatActivity {
 
                     GlobalArrayList.add(new Result(stoppedMilliseconds));
                     saveShared();
-                    Toast.makeText(Timer.this, GlobalArrayList.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Timer.this, GlobalArrayList.toString(), Toast.LENGTH_SHORT).show();
 
                     startActivity(activityA);
                 } else {
