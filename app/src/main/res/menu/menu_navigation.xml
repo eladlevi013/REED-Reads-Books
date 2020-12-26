@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/timer"
+        android:title="Timer"
+        android:icon="@drawable/ic_baseline_timer"></item>
+
+    <item
+        android:id="@+id/history"
+        android:title="History"
+        android:icon="@drawable/ic_baseline_history"></item>
+
+    <item
+        android:id="@+id/about"
+        android:title="About"
+        android:icon="@drawable/ic_baseline_info"></item>
+</menu>
