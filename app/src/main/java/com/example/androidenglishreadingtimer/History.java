@@ -1,11 +1,13 @@
 package com.example.androidenglishreadingtimer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,9 +24,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
@@ -32,8 +37,9 @@ public class History extends AppCompatActivity {
 
     public ArrayList<Result> GlobalArrayList = null;
     public ListView listView;
-    public TextView totalTime, averageTime, monthSum_tv;
+    public TextView totalTime, averageTime, monthSum_tv, weekSum_tv;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +48,15 @@ public class History extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("ResultList", null);
-        Type type = new TypeToken<ArrayList<Result>>() {}.getType();
+        Type type = new TypeToken<ArrayList<Result>>() {
+        }.getType();
         GlobalArrayList = gson.fromJson(json, type);
-        if(GlobalArrayList == null) {
+        if (GlobalArrayList == null) {
             Toast.makeText(this, "Creating A new one!", Toast.LENGTH_SHORT).show();
             GlobalArrayList = new ArrayList<>();
         }
+
+        Collections.reverse(GlobalArrayList);
 
         //Initialize Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -62,7 +71,7 @@ public class History extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.timer:
                         startActivity(new Intent(getApplicationContext(), Timer.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.history:
@@ -70,7 +79,7 @@ public class History extends AppCompatActivity {
 
                     case R.id.about:
                         startActivity(new Intent(getApplicationContext(), About.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                 }
@@ -81,22 +90,50 @@ public class History extends AppCompatActivity {
 
         double totalSum = Math.floor(arraySum(GlobalArrayList) * 100) / 100;
         totalTime = findViewById(R.id.sum_tv);
-        totalTime.setText("Total Time: " + totalSum + " min");
+        if(totalSum >= 60) {
+            totalTime.setText("Total Time: " + totalSum/60 + " hours, and: " + totalSum%60 +  " minutes");
+        }
+        else
+        {
+            totalTime.setText("Total Time: " + totalSum + " minutes");
+        }
 
-        double averageTimePerRead = totalSum/GlobalArrayList.size();
+        double averageTimePerRead = totalSum / GlobalArrayList.size();
         averageTimePerRead = Math.floor(averageTimePerRead * 100) / 100;
         averageTime = findViewById(R.id.average_tv);
         averageTime.setText("Average reading time: " + averageTimePerRead + " min");
 
         double monthSum = monthSumFunction(GlobalArrayList);
         monthSum_tv = findViewById(R.id.sumMonth_tv);
-        monthSum =  Math.floor(monthSum * 100) / 100;
+        monthSum = Math.floor(monthSum * 100) / 100;
         monthSum_tv.setText("This month: " + monthSum + " min");
 
-        Collections.reverse(GlobalArrayList);
+        getWeekSum(GlobalArrayList);
+        double weekSum = getWeekSum(GlobalArrayList);
+        weekSum = Math.floor(weekSum * 100) / 100;
+        weekSum_tv = findViewById(R.id.sumWeek_tv);
+        weekSum_tv.setText("Last Week: " + weekSum + " min");
+
         listView = findViewById(R.id.ls);
         listView.setAdapter(new MyCustomBaseAdapter(this, GlobalArrayList));
         //Toast.makeText(this, "sum: " + arraySum(GlobalArrayList), Toast.LENGTH_SHORT).show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private double getWeekSum(ArrayList<Result> globalArrayList) {
+        double sum = 0;
+        int i = 0;
+        final LocalDate date = LocalDate.now();
+        final LocalDate dateMinus7Days = date.minusDays(7);
+
+        long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
+//
+        while (date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
+            sum += globalArrayList.get(i).getChronmeter();
+            i++;
+        }
+
+        return sum;
     }
 
     public static double monthSumFunction(ArrayList<Result> arrayList){
