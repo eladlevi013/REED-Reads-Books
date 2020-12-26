@@ -128,7 +128,7 @@ public class History extends AppCompatActivity {
 
         long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
 //
-        while (date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
+        while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
             sum += globalArrayList.get(i).getChronmeter();
             i++;
         }
