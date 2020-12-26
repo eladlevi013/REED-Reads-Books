@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,16 +24,25 @@ import java.lang.reflect.Type;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 public class Timer extends AppCompatActivity {
 
     ArrayList<Result> GlobalArrayList;
     Chronometer chron;
     Button btn, btn_rest;
+    TextView quote_tv;
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        String[] quoteArray = new String[] {"“Once you learn to read, you will be forever free.” — Frederick Douglass", "“The more that you read, the more things you will know. The more you learn, the more places you’ll go.”— Dr. Seuss, “I Can Read With My Eyes Shut!”", "“Today a reader, tomorrow a leader.” – Margaret Fuller", "“There are worse crimes than burning books.  One of them is not reading them.” – Ray Bradbury", "“Reading is to the mind what exercise is to the body.” – Richard Steele”", "“Reading is a discount ticket to everywhere.”  – Mary Schmich", "“Reading is to the mind what exercise is to the body – Joseph Addison"};
+
+        Random random = new Random();
+        int RANDOM_QUATE_NUMBER = random.nextInt(7);
+        quote_tv = findViewById(R.id.quote);
+        quote_tv.setText(quoteArray[RANDOM_QUATE_NUMBER]);
 
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
