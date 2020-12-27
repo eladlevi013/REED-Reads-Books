@@ -214,12 +214,17 @@ public class Timer extends AppCompatActivity {
         // Set an EditText view to get user input
         final EditText input = new EditText(Timer.this);
         alert.setView(input);
+        input.setText("");
 
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
-                if(input.getText().toString() != null) {
-                     BookName = input.getText().toString();
+                if(input.getText().toString().matches("")) {
+                    BookName = "Default Value";
+                    afterPopup();
+                }
+                else {
+                    BookName = input.getText().toString();
                     afterPopup();
                 }
             }
