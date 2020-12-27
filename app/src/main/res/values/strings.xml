@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Android English Reading Timer</string>
+    <string name="clickTimer">Click <b>TIMER</b> To Read More</string>
     <string name="ul_string_here"><u>My Reading Log</u></string>
+    <string name="readyToread"><u>MY READING GOALS:</u></string>
     <string name="text1">מיוצר על ידי אלעד לוי מתיכון סולם צור בשביל המינהל לחינוך התיישובתי פנימייתי ועליית הנוער קורונה 2020/2021</string>
 </resources>

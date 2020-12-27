@@ -57,7 +57,7 @@ public class Score extends AppCompatActivity {
         weekSum_tv = findViewById(R.id.weekSum);
         float weekSum = (float) ClassHelper.getWeekSum(GlobalArrayList);
         String weekString = String.valueOf(weekSum);
-        weekSum_tv.setText("Last Week: " + weekString + " min");
+        weekSum_tv.setText("Total this Week: " + weekString + " min");
 
         BOOK_NAME = getIntent().getStringExtra("book_name");
         BookName_tv = findViewById(R.id.book_name_tv);

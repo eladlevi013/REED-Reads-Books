@@ -78,7 +78,7 @@ public class About extends AppCompatActivity {
         else if(WEEKLY_SUM > 60)
             amazing_tv.setText("WOW You are an expert reader! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
         else if(WEEKLY_SUM < 30) {
-            amazing_tv.setText("Ready to read more? click START and get reading!");
+            amazing_tv.setText("Ready to read more?");
         }
 
             setNewName.setOnClickListener(new View.OnClickListener() {
