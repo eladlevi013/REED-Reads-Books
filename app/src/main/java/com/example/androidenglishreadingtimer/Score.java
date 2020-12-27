@@ -34,23 +34,6 @@ public class Score extends AppCompatActivity {
     String time;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private double getWeekSum(ArrayList<Result> globalArrayList) {
-        double sum = 0;
-        int i = 0;
-        final LocalDate date = LocalDate.now();
-        final LocalDate dateMinus7Days = date.minusDays(7);
-
-        long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
-        if(globalArrayList != null) {
-            while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
-                sum += globalArrayList.get(i).getChronmeter();
-                i++;
-            }
-        }
-        return sum;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +52,7 @@ public class Score extends AppCompatActivity {
         fullname_tv.setText(sharedPreferences.getString("FULL_NAME", "Default Name"));
 
         weekSum_tv = findViewById(R.id.weekSum);
-        float weekSum = (float) getWeekSum(GlobalArrayList);
-        weekSum = (float) (Math.floor(weekSum * 100) / 100);
+        float weekSum = (float) ClassHelper.getWeekSum(GlobalArrayList);
         String weekString = String.valueOf(weekSum);
         weekSum_tv.setText("Last Week: " + weekString + " min");
 

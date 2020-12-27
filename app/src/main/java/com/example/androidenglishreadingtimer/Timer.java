@@ -27,6 +27,8 @@ import java.lang.reflect.Type;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 public class Timer extends AppCompatActivity {
@@ -108,6 +110,7 @@ public class Timer extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
+        //Collections.reverse(GlobalArrayList);
         String json = gson.toJson(GlobalArrayList);
         editor.putString("ResultList", json);
         editor.apply();
@@ -134,7 +137,7 @@ public class Timer extends AppCompatActivity {
 
                     case R.id.history:
                         if(isRunning){
-                            Toast.makeText(Timer.this, "You Can't Change Activity While is Timer is Running!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Timer.this, "You Can't Change Activity While The Timer is Running!", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             startActivity(new Intent(getApplicationContext(), History.class));

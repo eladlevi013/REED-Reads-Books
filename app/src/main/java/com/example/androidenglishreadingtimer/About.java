@@ -31,6 +31,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class About extends AppCompatActivity {
 
@@ -40,23 +41,6 @@ public class About extends AppCompatActivity {
     public double GOAL = 120;
     public String FULL_NAME = "Default Name";
     public double WEEKLY_SUM=0;
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private double getWeekSum(ArrayList<Result> globalArrayList) {
-        double sum = 0;
-        int i = 0;
-        final LocalDate date = LocalDate.now();
-        final LocalDate dateMinus7Days = date.minusDays(7);
-
-        long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
-        if(globalArrayList != null) {
-            while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
-                sum += globalArrayList.get(i).getChronmeter();
-                i++;
-            }
-        }
-        return sum;
-    }
 
     public void saveShared(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
@@ -72,7 +56,7 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         setNewName = findViewById(R.id.setNameButton);
 
-        //Duplicated Code
+            //Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("ResultList", null);
@@ -81,7 +65,10 @@ public class About extends AppCompatActivity {
         if(GlobalArrayList == null) {
             GlobalArrayList = new ArrayList<>();
         }
-        FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
+        //Collections.reverse(GlobalArrayList);
+        WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
+
+            FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name"); // Update the full_name variable
 
         setNewName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +109,6 @@ public class About extends AppCompatActivity {
         float goal = sharedPreferences.getFloat("goal", 120);
         GOAL = goal;
 
-        WEEKLY_SUM = getWeekSum(GlobalArrayList);
         statsView = findViewById(R.id.statsView);
         Button button = findViewById(R.id.setButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +130,7 @@ public class About extends AppCompatActivity {
 
                                 if(Double.parseDouble(input.getText().toString()) >= WEEKLY_SUM) {
                                     GOAL = Double.parseDouble(input.getText().toString());
-                                    statsView.setText((float) (Math.floor(WEEKLY_SUM * 100) / 100) + "/ " + GOAL);
+                                    statsView.setText(WEEKLY_SUM + "/ " + GOAL);
                                     createPiChart();
                                     saveShared();
                                 }
@@ -213,7 +199,7 @@ public class About extends AppCompatActivity {
         CircularProgressBar circularProgressBar = findViewById(R.id.circularProgressBar);
         // Set Progress
         circularProgressBar.setProgress((float) WEEKLY_SUM);
-         WEEKLY_SUM = getWeekSum(GlobalArrayList);
+         WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
         statsView.setText((float) (Math.floor(WEEKLY_SUM * 100) / 100) + "/ " + GOAL);
 
         // or with animation

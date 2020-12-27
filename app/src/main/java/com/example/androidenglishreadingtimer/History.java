@@ -58,7 +58,7 @@ public class History extends AppCompatActivity {
             GlobalArrayList = new ArrayList<>();
         }
 
-        Collections.reverse(GlobalArrayList);
+        //Collections.reverse(GlobalArrayList);
 
         //Initialize Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -110,31 +110,14 @@ public class History extends AppCompatActivity {
         monthSum = Math.floor(monthSum * 100) / 100;
         monthSum_tv.setText("This month: " + monthSum + " min");
 
-        getWeekSum(GlobalArrayList);
-        double weekSum = getWeekSum(GlobalArrayList);
+        ClassHelper.getWeekSum(GlobalArrayList);
+        double weekSum = ClassHelper.getWeekSum(GlobalArrayList);
         weekSum = Math.floor(weekSum * 100) / 100;
         weekSum_tv = findViewById(R.id.sumWeek_tv);
         weekSum_tv.setText("Last Week: " + weekSum + " min");
 
         listView = findViewById(R.id.ls);
         listView.setAdapter(new MyCustomBaseAdapter(this, GlobalArrayList));
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private double getWeekSum(ArrayList<Result> globalArrayList) {
-        double sum = 0;
-        int i = 0;
-        final LocalDate date = LocalDate.now();
-        final LocalDate dateMinus7Days = date.minusDays(7);
-
-        long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
-        if(globalArrayList != null) {
-            while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
-                sum += globalArrayList.get(i).getChronmeter();
-                i++;
-            }
-        }
-        return sum;
     }
 
     public static double monthSumFunction(ArrayList<Result> arrayList){
