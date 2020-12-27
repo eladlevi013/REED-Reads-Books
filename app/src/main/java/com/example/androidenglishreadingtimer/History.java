@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,14 @@ public class History extends AppCompatActivity {
     public ArrayList<Result> GlobalArrayList = null;
     public ListView listView;
     public TextView totalTime, averageTime, monthSum_tv, weekSum_tv;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void updateWeeklySum(){
+        getWeekSum(GlobalArrayList);
+//        double weekSum = getWeekSum(GlobalArrayList);
+//        weekSum = Math.floor(weekSum * 100) / 100;
+//        saveShared(weekSum);
+    }
 
     public void saveShared(double sum){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
@@ -135,12 +144,12 @@ public class History extends AppCompatActivity {
         final LocalDate dateMinus7Days = date.minusDays(7);
 
         long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
-//
-        while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
-            sum += globalArrayList.get(i).getChronmeter();
-            i++;
+        if(globalArrayList != null) {
+            while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
+                sum += globalArrayList.get(i).getChronmeter();
+                i++;
+            }
         }
-
         return sum;
     }
 

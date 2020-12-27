@@ -1,6 +1,7 @@
 package com.example.androidenglishreadingtimer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -24,14 +26,35 @@ import com.google.gson.reflect.TypeToken;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 
 public class About extends AppCompatActivity {
 
+    public ArrayList<Result> GlobalArrayList = null;
     TextView statsView;
     public double GOAL = 120;
     public double WEEKLY_SUM=0;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private double getWeekSum(ArrayList<Result> globalArrayList) {
+        double sum = 0;
+        int i = 0;
+        final LocalDate date = LocalDate.now();
+        final LocalDate dateMinus7Days = date.minusDays(7);
+
+        long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
+        if(globalArrayList != null) {
+            while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
+                sum += globalArrayList.get(i).getChronmeter();
+                i++;
+            }
+        }
+        return sum;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void getSum(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
@@ -39,10 +62,24 @@ public class About extends AppCompatActivity {
         WEEKLY_SUM = weekly;
     }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("ResultList", null);
+        Type type = new TypeToken<ArrayList<Result>>() {
+        }.getType();
+        GlobalArrayList = gson.fromJson(json, type);
+        if (GlobalArrayList == null) {
+            Toast.makeText(this, "Creating A new one!", Toast.LENGTH_SHORT).show();
+            GlobalArrayList = new ArrayList<>();
+        }
+
+        WEEKLY_SUM = getWeekSum(GlobalArrayList);
 
         statsView = findViewById(R.id.statsView);
         Button button = findViewById(R.id.setButton);
@@ -51,7 +88,6 @@ public class About extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(About.this);
                 alert.setTitle("Set A New Reading Minutes Goal For This Week");
-                alert.setMessage("New Goal :");
 
                 // Set an EditText view to get user input
                 final EditText input = new EditText(About.this);
@@ -121,11 +157,13 @@ public class About extends AppCompatActivity {
         createPiChart();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void createPiChart(){
         CircularProgressBar circularProgressBar = findViewById(R.id.circularProgressBar);
         // Set Progress
         circularProgressBar.setProgress((float) WEEKLY_SUM);
-        getSum();
+        //getSum();
+         WEEKLY_SUM = getWeekSum(GlobalArrayList);
         statsView.setText((float) (Math.floor(WEEKLY_SUM * 100) / 100) + "/ " + GOAL);
 
         // or with animation
