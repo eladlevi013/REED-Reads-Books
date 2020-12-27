@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_alignParentLeft="true"
             android:id="@+id/editname"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
@@ -46,6 +47,7 @@
             android:layout_alignParentRight="true"></Button>
 
         <TextView
+            android:layout_alignParentLeft="true"
             android:layout_below="@id/editname"
             android:id="@+id/displayName"
             android:layout_marginTop="20dp"

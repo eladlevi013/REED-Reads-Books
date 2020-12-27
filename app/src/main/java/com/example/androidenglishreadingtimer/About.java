@@ -72,19 +72,20 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         setNewName = findViewById(R.id.setNameButton);
 
+        //Duplicated Code
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("ResultList", null);
+        Type type = new TypeToken<ArrayList<Result>>() {}.getType();
+        GlobalArrayList = gson.fromJson(json, type);
+        if(GlobalArrayList == null) {
+            GlobalArrayList = new ArrayList<>();
+        }
+        FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
+
         setNewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Duplicated Code
-                SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-                Gson gson = new Gson();
-                String json = sharedPreferences.getString("ResultList", null);
-                Type type = new TypeToken<ArrayList<Result>>() {}.getType();
-                GlobalArrayList = gson.fromJson(json, type);
-                if(GlobalArrayList == null) {
-                    GlobalArrayList = new ArrayList<>();
-                }
                     //DIALOG
                     AlertDialog.Builder alert = new AlertDialog.Builder(About.this);
                     alert.setTitle("Enter Your full name");
@@ -118,17 +119,6 @@ public class About extends AppCompatActivity {
             }
         });
 
-        // Duplicated Code
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("ResultList", null);
-        Type type = new TypeToken<ArrayList<Result>>() {
-        }.getType();
-        GlobalArrayList = gson.fromJson(json, type);
-        if (GlobalArrayList == null) {
-            Toast.makeText(this, "Creating A new one!", Toast.LENGTH_SHORT).show();
-            GlobalArrayList = new ArrayList<>();
-        }
         float goal = sharedPreferences.getFloat("goal", 120);
         GOAL = goal;
 
@@ -181,7 +171,7 @@ public class About extends AppCompatActivity {
         displayName = findViewById(R.id.displayName_btn);
         displayName.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {   
+            public void onClick(View v) {
                 Toast.makeText(About.this, "Name: " + FULL_NAME, Toast.LENGTH_SHORT).show();
             }
         });

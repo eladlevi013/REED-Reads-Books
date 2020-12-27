@@ -76,6 +76,8 @@ public class Timer extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("FULL_NAME", FULL_NAME);
                         editor.apply();
+
+                        String asd = sharedPreferences.getString("FULL_NAME", "Default Name");
                     }
                 }
             });
