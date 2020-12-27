@@ -54,12 +54,11 @@ public class About extends AppCompatActivity {
         return sum;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void getSum(){
+    public void saveShared(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-        Gson gson = new Gson();
-        float weekly = sharedPreferences.getFloat("Weekly", 0f);
-        WEEKLY_SUM = weekly;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat("goal", (float) GOAL);
+        editor.apply();
     }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -68,6 +67,7 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        // Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("ResultList", null);
@@ -78,9 +78,10 @@ public class About extends AppCompatActivity {
             Toast.makeText(this, "Creating A new one!", Toast.LENGTH_SHORT).show();
             GlobalArrayList = new ArrayList<>();
         }
+        float goal = sharedPreferences.getFloat("goal", 120);
+        GOAL = goal;
 
         WEEKLY_SUM = getWeekSum(GlobalArrayList);
-
         statsView = findViewById(R.id.statsView);
         Button button = findViewById(R.id.setButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -104,10 +105,11 @@ public class About extends AppCompatActivity {
                                     GOAL = Double.parseDouble(input.getText().toString());
                                     statsView.setText((float) (Math.floor(WEEKLY_SUM * 100) / 100) + "/ " + GOAL);
                                     createPiChart();
+                                    saveShared();
                                 }
                             } catch (Exception e) {
                                 // This will catch any exception, because they are all descended from Exception
-                                System.out.println("Error1123123123123 " + e.getMessage());
+                                System.out.println("Error " + e.getMessage());
                             }
                         }
                         return;
@@ -162,7 +164,6 @@ public class About extends AppCompatActivity {
         CircularProgressBar circularProgressBar = findViewById(R.id.circularProgressBar);
         // Set Progress
         circularProgressBar.setProgress((float) WEEKLY_SUM);
-        //getSum();
          WEEKLY_SUM = getWeekSum(GlobalArrayList);
         statsView.setText((float) (Math.floor(WEEKLY_SUM * 100) / 100) + "/ " + GOAL);
 

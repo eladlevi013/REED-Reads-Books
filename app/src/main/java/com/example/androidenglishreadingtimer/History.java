@@ -41,26 +41,12 @@ public class History extends AppCompatActivity {
     public TextView totalTime, averageTime, monthSum_tv, weekSum_tv;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void updateWeeklySum(){
-        getWeekSum(GlobalArrayList);
-//        double weekSum = getWeekSum(GlobalArrayList);
-//        weekSum = Math.floor(weekSum * 100) / 100;
-//        saveShared(weekSum);
-    }
-
-    public void saveShared(double sum){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putFloat("Weekly", (float) (Math.floor(sum * 100) / 100));
-        editor.apply();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        // Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("ResultList", null);
@@ -129,11 +115,9 @@ public class History extends AppCompatActivity {
         weekSum = Math.floor(weekSum * 100) / 100;
         weekSum_tv = findViewById(R.id.sumWeek_tv);
         weekSum_tv.setText("Last Week: " + weekSum + " min");
-        saveShared(weekSum);
 
         listView = findViewById(R.id.ls);
         listView.setAdapter(new MyCustomBaseAdapter(this, GlobalArrayList));
-        //Toast.makeText(this, "sum: " + arraySum(GlobalArrayList), Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -184,17 +168,6 @@ public class History extends AppCompatActivity {
         return sum;
     }
 
-//    public static ArrayList<Result> createRandomList() {
-//        ArrayList<Result> arrayList = new ArrayList<>();
-//        arrayList.add(new Result());
-//        arrayList.add(new Result());
-//        arrayList.add(new Result());
-//        arrayList.add(new Result());
-//        arrayList.add(new Result());
-//
-//        return arrayList;
-//    }
-
     public class MyCustomBaseAdapter extends BaseAdapter {
         private ArrayList<Result> searchArrayList;
         private LayoutInflater mInflater;
@@ -230,7 +203,6 @@ public class History extends AppCompatActivity {
             }
 
             Date date = searchArrayList.get(position).getDate();
-            //java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
             String formattedDate = sdf.format(date);

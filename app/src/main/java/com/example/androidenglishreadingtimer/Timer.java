@@ -50,11 +50,8 @@ public class Timer extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<Result>>() {}.getType();
         GlobalArrayList = gson.fromJson(json, type);
         if(GlobalArrayList == null) {
-            //Toast.makeText(this, "Creating A new one!", Toast.LENGTH_SHORT).show();
             GlobalArrayList = new ArrayList<>();
         }
-//        else
-//            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -137,12 +134,9 @@ public class Timer extends AppCompatActivity {
                     chron.stop();
                     btn.setEnabled(false);
                     long time = SystemClock.elapsedRealtime() - chron.getBase();
-                    //Toast.makeText(getContext(), (int) time, Toast.LENGTH_SHORT).show();
+
                     Intent activityA = new Intent(Timer.this, Score.class);
                     activityA.putExtra("time",chron.getText());
-                    //long elapsedMillis = SystemClock.elapsedRealtime() - chron.getBase();
-                    //Toast.makeText(getContext(), (String) (SystemClock.elapsedRealtime() - chron.getBase()), Toast.LENGTH_SHORT).show();
-                    //activityA.putExtra(chron)
 
                     double stoppedMilliseconds = 0;
                     String array[] = chron.getText().toString().split(":");
@@ -160,8 +154,6 @@ public class Timer extends AppCompatActivity {
 
                     GlobalArrayList.add(new Result(stoppedMilliseconds));
                     saveShared();
-                    //Toast.makeText(Timer.this, GlobalArrayList.toString(), Toast.LENGTH_SHORT).show();
-
                     startActivity(activityA);
                 } else {
                     chron.setBase(SystemClock.elapsedRealtime());
