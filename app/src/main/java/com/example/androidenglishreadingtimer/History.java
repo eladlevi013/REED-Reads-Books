@@ -31,6 +31,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
@@ -58,7 +59,7 @@ public class History extends AppCompatActivity {
             GlobalArrayList = new ArrayList<>();
         }
 
-        //Collections.reverse(GlobalArrayList);
+        Collections.reverse(GlobalArrayList);
 
         //Initialize Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

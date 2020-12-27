@@ -33,6 +33,7 @@ import java.util.Random;
 
 public class Timer extends AppCompatActivity {
 
+    public String BookName = "BOOK_NAME";
     ArrayList<Result> GlobalArrayList;
     Chronometer chron;
     Button btn, btn_rest;
@@ -188,32 +189,8 @@ public class Timer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn.getText() == "Stop") {
-                    isRunning = false;
-                    btn_rest.setEnabled(true);
-                    chron.stop();
-                    btn.setEnabled(false);
-                    long time = SystemClock.elapsedRealtime() - chron.getBase();
+                    popupBookName();
 
-                    Intent activityA = new Intent(Timer.this, Score.class);
-                    activityA.putExtra("time",chron.getText());
-
-                    double stoppedMilliseconds = 0;
-                    String array[] = chron.getText().toString().split(":");
-                    if (array.length == 2) {
-                        stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000
-                                + Integer.parseInt(array[1]) * 1000;
-                    } else if (array.length == 3) {
-                        stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000
-                                + Integer.parseInt(array[1]) * 60 * 1000
-                                + Integer.parseInt(array[2]) * 1000;
-                    }
-
-                    stoppedMilliseconds = stoppedMilliseconds/60000;
-                    stoppedMilliseconds = Math.floor(stoppedMilliseconds * 100) / 100;
-
-                    GlobalArrayList.add(new Result(stoppedMilliseconds));
-                    saveShared();
-                    startActivity(activityA);
                 } else {
                     isRunning = true;
                     chron.setBase(SystemClock.elapsedRealtime());
@@ -222,5 +199,65 @@ public class Timer extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void popupBookName() {
+        //DIALOG
+        AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
+        alert.setTitle("Enter The Book Name ");
+
+        // Set an EditText view to get user input
+        final EditText input = new EditText(Timer.this);
+        alert.setView(input);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                if(input.getText().toString() != null) {
+                     BookName = input.getText().toString();
+                     afterPopup();
+                }
+            }
+        });
+
+        alert.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        afterPopup();
+                        return;
+                    }
+                });
+        alert.show();
+    }
+
+    public void afterPopup() {
+        isRunning = false;
+        btn_rest.setEnabled(true);
+        chron.stop();
+        btn.setEnabled(false);
+        long time = SystemClock.elapsedRealtime() - chron.getBase();
+
+        Intent activityA = new Intent(Timer.this, Score.class);
+        activityA.putExtra("time",chron.getText());
+        activityA.putExtra("book_name", BookName);
+
+        double stoppedMilliseconds = 0;
+        String array[] = chron.getText().toString().split(":");
+        if (array.length == 2) {
+            stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000
+                    + Integer.parseInt(array[1]) * 1000;
+        } else if (array.length == 3) {
+            stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000
+                    + Integer.parseInt(array[1]) * 60 * 1000
+                    + Integer.parseInt(array[2]) * 1000;
+        }
+
+        stoppedMilliseconds = stoppedMilliseconds/60000;
+        stoppedMilliseconds = Math.floor(stoppedMilliseconds * 100) / 100;
+
+        GlobalArrayList.add(new Result(stoppedMilliseconds, BookName));
+        saveShared();
+        startActivity(activityA);
     }
 }

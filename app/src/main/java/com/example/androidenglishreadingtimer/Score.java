@@ -21,6 +21,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
@@ -29,9 +30,9 @@ import nl.dionsegijn.konfetti.models.Size;
 public class Score extends AppCompatActivity {
 
     ArrayList<Result> GlobalArrayList;
-    TextView fullname_tv, weekSum_tv;
+    TextView fullname_tv, weekSum_tv, BookName_tv;
     Button button;
-    String time;
+    String time, BOOK_NAME;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -48,6 +49,8 @@ public class Score extends AppCompatActivity {
             GlobalArrayList = new ArrayList<>();
         }
 
+        Collections.reverse(GlobalArrayList);
+
         fullname_tv = findViewById(R.id.name);
         fullname_tv.setText(sharedPreferences.getString("FULL_NAME", "Default Name"));
 
@@ -55,6 +58,10 @@ public class Score extends AppCompatActivity {
         float weekSum = (float) ClassHelper.getWeekSum(GlobalArrayList);
         String weekString = String.valueOf(weekSum);
         weekSum_tv.setText("Last Week: " + weekString + " min");
+
+        BOOK_NAME = getIntent().getStringExtra("book_name");
+        BookName_tv = findViewById(R.id.book_name_tv);
+        BookName_tv.setText("Book: " + BOOK_NAME);
 
         time = getIntent().getStringExtra("time");
         TextView textView = findViewById(R.id.time_tv);

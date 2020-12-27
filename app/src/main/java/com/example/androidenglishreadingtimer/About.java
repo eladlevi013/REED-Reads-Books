@@ -65,7 +65,7 @@ public class About extends AppCompatActivity {
         if(GlobalArrayList == null) {
             GlobalArrayList = new ArrayList<>();
         }
-        //Collections.reverse(GlobalArrayList);
+        Collections.reverse(GlobalArrayList);
         WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
 
             FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name"); // Update the full_name variable
