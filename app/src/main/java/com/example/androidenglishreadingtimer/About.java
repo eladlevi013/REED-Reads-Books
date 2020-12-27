@@ -181,7 +181,7 @@ public class About extends AppCompatActivity {
         displayName = findViewById(R.id.displayName_btn);
         displayName.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {   
                 Toast.makeText(About.this, "Name: " + FULL_NAME, Toast.LENGTH_SHORT).show();
             }
         });
