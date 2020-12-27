@@ -54,7 +54,7 @@
         android:layout_above="@id/button"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_button"
-        android:text="Rest"
+        android:text="Reset"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"

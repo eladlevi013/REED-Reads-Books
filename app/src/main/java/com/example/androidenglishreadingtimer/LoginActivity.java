@@ -61,35 +61,36 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
         alert.setTitle("Enter Your Full Name");
         alert.setCancelable(false);
-        
+
         // Set an EditText view to get user input
         final EditText input = new EditText(LoginActivity.this);
         alert.setView(input);
+        input.setText("");
 
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
-//                if(input.getText().toString() == "") {
-//                        FULL_NAME = "Default Name";
-//                    }
-                Toast.makeText(LoginActivity.this, "If the username is empty, try to change it, in the about page", Toast.LENGTH_SHORT).show();
+                if(input.getText().toString().matches("")) {
+                    Toast.makeText(LoginActivity.this, "You can change your name in the 'about' page", Toast.LENGTH_SHORT).show();
                     FULL_NAME = input.getText().toString();
                     //FULL_NAME = input.getText().toString();
                     SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("FULL_NAME", FULL_NAME);
+                    editor.putString("FULL_NAME", "Default Name");
                     editor.apply();
                     waitToAcitivity();
                 }
+                else{
+                Toast.makeText(LoginActivity.this, "Welcome, " + FULL_NAME, Toast.LENGTH_SHORT).show();
+                FULL_NAME = input.getText().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("FULL_NAME", FULL_NAME);
+                editor.apply();
+                waitToAcitivity();
+                }
+            }
         });
-
-        alert.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        return;
-                    }
-                });
         alert.show();
     }
 }
