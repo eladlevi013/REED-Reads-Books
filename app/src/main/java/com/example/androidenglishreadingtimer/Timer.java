@@ -32,6 +32,7 @@ public class Timer extends AppCompatActivity {
     Chronometer chron;
     Button btn, btn_rest;
     TextView quote_tv;
+    boolean isRunning= false;
 
     @Override
     protected void onResume() {
@@ -89,14 +90,25 @@ public class Timer extends AppCompatActivity {
                         return true;
 
                     case R.id.history:
-                        startActivity(new Intent(getApplicationContext(), History.class));
-                        overridePendingTransition(0,0);
-                        return true;
+                        if(isRunning){
+                            Toast.makeText(Timer.this, "You Can't Change Activity While is Timer is Running!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            startActivity(new Intent(getApplicationContext(), History.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                        }
 
                     case R.id.about:
-                        startActivity(new Intent(getApplicationContext(), About.class));
-                        overridePendingTransition(0,0);
-                        return true;
+                        if(isRunning){
+                            Toast.makeText(Timer.this, "You Can't Change Activity While is Timer is Running!", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            startActivity(new Intent(getApplicationContext(), About.class));
+                            overridePendingTransition(0,0);
+                            return true;
+                        }
 
                 }
                 return false;
@@ -130,6 +142,7 @@ public class Timer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn.getText() == "Stop") {
+                    isRunning = false;
                     btn_rest.setEnabled(true);
                     chron.stop();
                     btn.setEnabled(false);
@@ -156,6 +169,7 @@ public class Timer extends AppCompatActivity {
                     saveShared();
                     startActivity(activityA);
                 } else {
+                    isRunning = true;
                     chron.setBase(SystemClock.elapsedRealtime());
                     chron.start();
                     btn.setText("Stop");
