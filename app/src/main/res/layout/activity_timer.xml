@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eed1ff"
     tools:context=".History">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/quote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
-        android:text= " &#34;The whole world opened up to me when I learned to read&#34;"
+        android:text= "&#34;The whole world opened up to me when I learned to read&#34;"
         android:textSize="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
@@ -37,6 +39,14 @@
         android:textSize="50dp"
         android:textStyle="bold"
         android:id="@+id/timer_chrone"></Chronometer>
+
+    <ImageView
+        android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/bookshelf"
+        android:layout_below="@id/timer_chrone"></ImageView>
 
     <Button
         android:layout_above="@id/bottom_navigation"

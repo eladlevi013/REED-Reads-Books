@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#eed1ff"
     android:layout_height="match_parent"
     tools:context=".History">
 
     <TextView
+        android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/sum_tv"
@@ -19,6 +21,7 @@
         android:textSize="15dp"></TextView>
 
     <TextView
+        android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/average_tv"
@@ -31,6 +34,7 @@
         android:textSize="15dp"></TextView>
 
     <TextView
+        android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/sumMonth_tv"
@@ -43,6 +47,7 @@
         android:textSize="15dp"></TextView>
 
     <TextView
+        android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/sumWeek_tv"
@@ -64,10 +69,23 @@
         android:id="@+id/bottom_navigation"
         app:itemBackground="@color/design_default_color_primary_dark"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
+    <TextView
+        android:fontFamily="casual"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:id="@+id/readingLog"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/sumWeek_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:text="@string/ul_string_here"
+        android:layout_centerHorizontal="true"></TextView>
+
     <ListView
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/ls"
-        android:layout_below="@+id/sumWeek_tv"
+        android:layout_below="@+id/readingLog"
         android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>

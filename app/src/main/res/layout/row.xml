@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:fontFamily="casual"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
@@ -14,6 +15,7 @@
         android:textSize="20dp"></TextView>
 
     <TextView
+        android:fontFamily="casual"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"

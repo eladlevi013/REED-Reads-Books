@@ -109,13 +109,13 @@ public class History extends AppCompatActivity {
         double monthSum = monthSumFunction(GlobalArrayList);
         monthSum_tv = findViewById(R.id.sumMonth_tv);
         monthSum = Math.floor(monthSum * 100) / 100;
-        monthSum_tv.setText("This month: " + monthSum + " min");
+        monthSum_tv.setText("Total This month: " + monthSum + " min");
 
         ClassHelper.getWeekSum(GlobalArrayList);
         double weekSum = ClassHelper.getWeekSum(GlobalArrayList);
         weekSum = Math.floor(weekSum * 100) / 100;
         weekSum_tv = findViewById(R.id.sumWeek_tv);
-        weekSum_tv.setText("Last Week: " + weekSum + " min");
+        weekSum_tv.setText("Total This Week: " + weekSum + " min");
 
         listView = findViewById(R.id.ls);
         listView.setAdapter(new MyCustomBaseAdapter(this, GlobalArrayList));
