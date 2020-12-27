@@ -6,20 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".History">
 
+    <RelativeLayout
+        android:paddingBottom="15dp"
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/editname"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="CHANGE NAME:"></TextView>
+
+        <Button
+            android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="set"
+        android:id="@+id/setNameButton"
+        android:background="@drawable/bg_button"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"></Button>
+
+        <Button
+            android:layout_below="@id/setNameButton"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:text="show"
+            android:id="@+id/displayName_btn"
+            android:background="@drawable/bg_button"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"></Button>
+
+        <TextView
+            android:layout_below="@id/editname"
+            android:id="@+id/displayName"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="DISPLAY NAME:"></TextView>
+    </RelativeLayout>
+
     <TextView
+        android:layout_below="@id/relativeLayout"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WEELY GOAL: "
         android:textStyle="bold"
         android:id="@+id/goal_tv"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:textSize="30dp"></TextView>
+        android:textSize="25dp"></TextView>
 
     <Button
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="set"
         android:id="@+id/setButton"
         android:background="@drawable/bg_button"
@@ -29,6 +81,7 @@
         android:layout_below="@id/goal_tv"></Button>
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:layout_below="@id/relativeLayout"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:id="@+id/circularProgressBar"

@@ -1,14 +1,26 @@
 package com.example.androidenglishreadingtimer;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
@@ -16,13 +28,51 @@ import nl.dionsegijn.konfetti.models.Size;
 
 public class Score extends AppCompatActivity {
 
+    ArrayList<Result> GlobalArrayList;
+    TextView fullname_tv, weekSum_tv;
     Button button;
     String time;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private double getWeekSum(ArrayList<Result> globalArrayList) {
+        double sum = 0;
+        int i = 0;
+        final LocalDate date = LocalDate.now();
+        final LocalDate dateMinus7Days = date.minusDays(7);
+
+        long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
+        if(globalArrayList != null) {
+            while (globalArrayList.size() > i && date7beforemilli < globalArrayList.get(i).getDate().toInstant().toEpochMilli()) {
+                sum += globalArrayList.get(i).getChronmeter();
+                i++;
+            }
+        }
+        return sum;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("ResultList", null);
+        Type type = new TypeToken<ArrayList<Result>>() {}.getType();
+        GlobalArrayList = gson.fromJson(json, type);
+        if(GlobalArrayList == null) {
+            GlobalArrayList = new ArrayList<>();
+        }
+
+        fullname_tv = findViewById(R.id.name);
+        fullname_tv.setText(sharedPreferences.getString("FULL_NAME", "Default Name"));
+
+        weekSum_tv = findViewById(R.id.weekSum);
+        float weekSum = (float) getWeekSum(GlobalArrayList);
+        weekSum = (float) (Math.floor(weekSum * 100) / 100);
+        String weekString = String.valueOf(weekSum);
+        weekSum_tv.setText("Last Week: " + weekString + " min");
 
         time = getIntent().getStringExtra("time");
         TextView textView = findViewById(R.id.time_tv);

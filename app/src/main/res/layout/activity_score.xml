@@ -25,11 +25,34 @@
     <ImageView
         android:layout_centerInParent="true"
         android:src="@drawable/trophy"
-        android:id="@+id/myImg"
+        android:id="@+id/trophy"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/name"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/trophy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name Default"
+        android:textStyle="bold"
+        android:textSize="30dp"></TextView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/weekSum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@id/button_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Week: 0.0"
+        android:textStyle="bold"
+        android:textSize="30dp"></TextView>
 
     <Button
         android:layout_centerHorizontal="true"

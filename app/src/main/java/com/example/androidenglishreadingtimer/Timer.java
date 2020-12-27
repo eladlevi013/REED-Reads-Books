@@ -57,7 +57,7 @@ public class Timer extends AppCompatActivity {
         if(GlobalArrayList == null) {
             GlobalArrayList = new ArrayList<>();
         }
-        if(sharedPreferences.getString("FULL_NAME", "") == "") {
+        if(sharedPreferences.getString("FULL_NAME", "Default Name") == "Default Name") {
             //DIALOG
             AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
             alert.setTitle("Enter Your full name");
@@ -90,7 +90,7 @@ public class Timer extends AppCompatActivity {
             alert.show();
         }
         else {
-            FULL_NAME = sharedPreferences.getString("FULL_NAME", "");
+            FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
             //Toast.makeText(this, "Hey," + FULL_NAME, Toast.LENGTH_SHORT).show();
         }
 

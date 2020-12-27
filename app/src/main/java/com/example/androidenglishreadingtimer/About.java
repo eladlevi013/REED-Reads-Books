@@ -25,6 +25,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -34,7 +36,9 @@ public class About extends AppCompatActivity {
 
     public ArrayList<Result> GlobalArrayList = null;
     TextView statsView;
+    Button setNewName, displayName;
     public double GOAL = 120;
+    public String FULL_NAME = "Default Name";
     public double WEEKLY_SUM=0;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -66,6 +70,53 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        setNewName = findViewById(R.id.setNameButton);
+
+        setNewName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Duplicated Code
+                SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+                Gson gson = new Gson();
+                String json = sharedPreferences.getString("ResultList", null);
+                Type type = new TypeToken<ArrayList<Result>>() {}.getType();
+                GlobalArrayList = gson.fromJson(json, type);
+                if(GlobalArrayList == null) {
+                    GlobalArrayList = new ArrayList<>();
+                }
+                    //DIALOG
+                    AlertDialog.Builder alert = new AlertDialog.Builder(About.this);
+                    alert.setTitle("Enter Your full name");
+
+                    // Set an EditText view to get user input
+                    final EditText input = new EditText(About.this);
+                    alert.setView(input);
+
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                            if(input.getText().toString() != null) {
+                                FULL_NAME = input.getText().toString();
+
+                                SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("FULL_NAME", FULL_NAME);
+                                editor.apply();
+                            }
+                        }
+                    });
+
+                    alert.setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // TODO Auto-generated method stub
+                                    return;
+                                }
+                            });
+                    alert.show();
+            }
+        });
 
         // Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
@@ -124,6 +175,14 @@ public class About extends AppCompatActivity {
                             }
                         });
                 alert.show();
+            }
+        });
+
+        displayName = findViewById(R.id.displayName_btn);
+        displayName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(About.this, "Name: " + FULL_NAME, Toast.LENGTH_SHORT).show();
             }
         });
 
