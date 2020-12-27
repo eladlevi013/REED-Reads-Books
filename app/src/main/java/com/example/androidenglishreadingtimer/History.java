@@ -39,6 +39,13 @@ public class History extends AppCompatActivity {
     public ListView listView;
     public TextView totalTime, averageTime, monthSum_tv, weekSum_tv;
 
+    public void saveShared(double sum){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat("Weekly", (float) (Math.floor(sum * 100) / 100));
+        editor.apply();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +120,7 @@ public class History extends AppCompatActivity {
         weekSum = Math.floor(weekSum * 100) / 100;
         weekSum_tv = findViewById(R.id.sumWeek_tv);
         weekSum_tv.setText("Last Week: " + weekSum + " min");
+        saveShared(weekSum);
 
         listView = findViewById(R.id.ls);
         listView.setAdapter(new MyCustomBaseAdapter(this, GlobalArrayList));
