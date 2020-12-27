@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ public class Timer extends AppCompatActivity {
     Button btn, btn_rest;
     TextView quote_tv;
     boolean isRunning= false;
+    public String FULL_NAME;
 
     @Override
     protected void onResume() {
@@ -53,6 +57,43 @@ public class Timer extends AppCompatActivity {
         if(GlobalArrayList == null) {
             GlobalArrayList = new ArrayList<>();
         }
+        if(sharedPreferences.getString("FULL_NAME", "") == "") {
+            //DIALOG
+            AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
+            alert.setTitle("Enter Your full name");
+
+            // Set an EditText view to get user input
+            final EditText input = new EditText(Timer.this);
+            alert.setView(input);
+
+            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+
+                    if(input.getText().toString() != null) {
+                        FULL_NAME = input.getText().toString();
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("FULL_NAME", FULL_NAME);
+                        editor.apply();
+                    }
+                }
+            });
+
+            alert.setNegativeButton("Cancel",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO Auto-generated method stub
+                            return;
+                        }
+                    });
+            alert.show();
+        }
+        else {
+            FULL_NAME = sharedPreferences.getString("FULL_NAME", "");
+            //Toast.makeText(this, "Hey," + FULL_NAME, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
