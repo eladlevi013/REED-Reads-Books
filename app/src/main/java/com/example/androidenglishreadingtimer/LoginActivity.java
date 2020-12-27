@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     public String FULL_NAME = "Default Name";
-    private static final int SPLASH_TIME_OUT = 1000;
+    private static final int SPLASH_TIME_OUT = 2000;
     TextView welcome;
 
     @Override
@@ -36,8 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
 
         if (sharedPreferences.getString("FULL_NAME", "Default Name") != "Default Name") {
-            welcome.setText("Welcome back, " + FULL_NAME);
-            Toast.makeText(this, "Hey, " + FULL_NAME , Toast.LENGTH_SHORT).show();
+            welcome.setText("Welcome Back, " + FULL_NAME);
+            //Toast.makeText(this, "Hey, " + FULL_NAME , Toast.LENGTH_SHORT).show();
             waitToAcitivity();
         }
         else {
@@ -81,13 +81,13 @@ public class LoginActivity extends AppCompatActivity {
                     waitToAcitivity();
                 }
                 else{
-                Toast.makeText(LoginActivity.this, "Welcome, " + FULL_NAME, Toast.LENGTH_SHORT).show();
-                FULL_NAME = input.getText().toString();
-                SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("FULL_NAME", FULL_NAME);
-                editor.apply();
-                waitToAcitivity();
+                    FULL_NAME = input.getText().toString();
+                    Toast.makeText(LoginActivity.this, "Welcome, " + FULL_NAME, Toast.LENGTH_SHORT).show();
+                    SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("FULL_NAME", FULL_NAME);
+                    editor.apply();
+                    waitToAcitivity();
                 }
             }
         });
