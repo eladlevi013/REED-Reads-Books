@@ -60,40 +60,40 @@ public class Timer extends AppCompatActivity {
         if(GlobalArrayList == null) {
             GlobalArrayList = new ArrayList<>();
         }
-        if(sharedPreferences.getString("FULL_NAME", "Default Name") == "Default Name") {
-            //DIALOG
-            AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
-            alert.setTitle("Enter Your full name");
-
-            // Set an EditText view to get user input
-            final EditText input = new EditText(Timer.this);
-            alert.setView(input);
-
-            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-
-                    if(input.getText().toString() != null) {
-                        FULL_NAME = input.getText().toString();
-
-                        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("FULL_NAME", FULL_NAME);
-                        editor.apply();
-
-                        String asd = sharedPreferences.getString("FULL_NAME", "Default Name");
-                    }
-                }
-            });
-
-            alert.setNegativeButton("Cancel",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // TODO Auto-generated method stub
-                            return;
-                        }
-                    });
-            alert.show();
-        }
+//        if(sharedPreferences.getString("FULL_NAME", "Default Name") == "Default Name") {
+//            //DIALOG
+//            AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
+//            alert.setTitle("Enter Your full name");
+//
+//            // Set an EditText view to get user input
+//            final EditText input = new EditText(Timer.this);
+//            alert.setView(input);
+//
+//            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//
+//                    if(input.getText().toString() != null) {
+//                        FULL_NAME = input.getText().toString();
+//
+//                        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("FULL_NAME", FULL_NAME);
+//                        editor.apply();
+//
+//                        String asd = sharedPreferences.getString("FULL_NAME", "Default Name");
+//                    }
+//                }
+//            });
+//
+//            alert.setNegativeButton("Cancel",
+//                    new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            // TODO Auto-generated method stub
+//                            return;
+//                        }
+//                    });
+//            alert.show();
+//        }
         else {
             FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
             //Toast.makeText(this, "Hey," + FULL_NAME, Toast.LENGTH_SHORT).show();
@@ -189,6 +189,10 @@ public class Timer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn.getText() == "Stop") {
+                    isRunning = false;
+                    btn_rest.setEnabled(true);
+                    chron.stop();
+                    btn.setEnabled(false);
                     popupBookName();
 
                 } else {
@@ -205,6 +209,7 @@ public class Timer extends AppCompatActivity {
         //DIALOG
         AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
         alert.setTitle("Enter The Book Name ");
+        alert.setCancelable(false);
 
         // Set an EditText view to get user input
         final EditText input = new EditText(Timer.this);
@@ -215,7 +220,7 @@ public class Timer extends AppCompatActivity {
 
                 if(input.getText().toString() != null) {
                      BookName = input.getText().toString();
-                     afterPopup();
+                    afterPopup();
                 }
             }
         });
@@ -224,6 +229,7 @@ public class Timer extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO Auto-generated method stub
+                        BookName = "Default Value";
                         afterPopup();
                         return;
                     }
@@ -232,10 +238,6 @@ public class Timer extends AppCompatActivity {
     }
 
     public void afterPopup() {
-        isRunning = false;
-        btn_rest.setEnabled(true);
-        chron.stop();
-        btn.setEnabled(false);
         long time = SystemClock.elapsedRealtime() - chron.getBase();
 
         Intent activityA = new Intent(Timer.this, Score.class);

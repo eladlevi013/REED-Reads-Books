@@ -36,8 +36,9 @@ import java.util.Collections;
 public class About extends AppCompatActivity {
 
     public ArrayList<Result> GlobalArrayList = null;
-    TextView statsView;
-    Button setNewName, displayName;
+    TextView statsView, amazing_tv;
+    Button setNewName;
+    TextView displayName;
     public double GOAL = 120;
     public String FULL_NAME = "Default Name";
     public double WEEKLY_SUM=0;
@@ -68,14 +69,24 @@ public class About extends AppCompatActivity {
         Collections.reverse(GlobalArrayList);
         WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
 
-            FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name"); // Update the full_name variable
+        FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name"); // Update the full_name variable
 
-        setNewName.setOnClickListener(new View.OnClickListener() {
+        amazing_tv = findViewById(R.id.yourAmazing);
+
+        if(WEEKLY_SUM < 60 && WEEKLY_SUM > 30)
+            amazing_tv.setText("WOW You are amazing! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
+        else if(WEEKLY_SUM > 60)
+            amazing_tv.setText("WOW You are an expert reader! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
+        else if(WEEKLY_SUM < 30) {
+            amazing_tv.setText("Ready to read more? click START and get reading!");
+        }
+
+            setNewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     //DIALOG
                     AlertDialog.Builder alert = new AlertDialog.Builder(About.this);
-                    alert.setTitle("Enter Your full name");
+                    alert.setTitle("Enter Your Full Name");
 
                     // Set an EditText view to get user input
                     final EditText input = new EditText(About.this);
@@ -91,6 +102,7 @@ public class About extends AppCompatActivity {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("FULL_NAME", FULL_NAME);
                                 editor.apply();
+                                displayName.setText(FULL_NAME);
                             }
                         }
                     });
@@ -154,13 +166,8 @@ public class About extends AppCompatActivity {
             }
         });
 
-        displayName = findViewById(R.id.displayName_btn);
-        displayName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(About.this, "Name: " + FULL_NAME, Toast.LENGTH_SHORT).show();
-            }
-        });
+        displayName = findViewById(R.id.displayNames);
+        displayName.setText(FULL_NAME);
 
         //Initialize Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

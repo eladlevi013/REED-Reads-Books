@@ -6,10 +6,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation= "portrait"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidEnglishReadingTimer">
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,7 @@
         <activity android:name=".Score" />
         <activity android:name=".About" />
         <activity android:name=".History" />
-        <activity android:name=".Timer"></activity>
+        <activity android:name=".Timer" />
     </application>
 
 </manifest>

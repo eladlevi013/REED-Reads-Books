@@ -8,6 +8,26 @@
 
     <RelativeLayout
         android:paddingBottom="15dp"
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/displayNames"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="Display"></TextView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@id/relativeLayout1"
+        android:paddingBottom="15dp"
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,30 +53,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
             android:layout_alignParentRight="true"></Button>
-
-        <Button
-            android:layout_below="@id/setNameButton"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:text="show"
-            android:id="@+id/displayName_btn"
-            android:background="@drawable/bg_button"
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"></Button>
-
-        <TextView
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/editname"
-            android:id="@+id/displayName"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:text="DISPLAY NAME:"></TextView>
     </RelativeLayout>
 
     <TextView
@@ -72,7 +68,8 @@
         android:textSize="25dp"></TextView>
 
     <Button
-        android:layout_alignParentLeft="true"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="25dp"
         android:text="set"
         android:id="@+id/setButton"
@@ -83,13 +80,14 @@
         android:layout_below="@id/goal_tv"></Button>
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
-        android:layout_below="@id/relativeLayout"
-        android:layout_alignParentRight="true"
+        android:layout_below="@id/goal_tv"
+        android:layout_marginLeft="30dp"
+        android:layout_alignParentLeft="true"
         android:layout_marginRight="20dp"
         android:id="@+id/circularProgressBar"
-        android:layout_marginTop="20dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:cpb_background_progressbar_color="#b6bbd8"
         app:cpb_background_progressbar_width="5dp"
         app:cpb_progress_direction="to_right"
@@ -98,14 +96,26 @@
         app:cpb_round_border="false" />
 
     <TextView
+        android:textSize="20dp"
         android:id="@+id/statsView"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/circularProgressBar"
         android:text="TEXT"
-        android:layout_marginRight="30dp"
-        android:layout_alignParentRight="true"></TextView>
+        android:layout_marginLeft="100dp"
+        android:layout_alignParentLeft="true"></TextView>
+
+    <TextView
+        android:id="@+id/yourAmazing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WOW You are amazing! You read 30 minutes this week!"
+        android:layout_above="@id/bottom_navigation"
+        android:textSize="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></TextView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
