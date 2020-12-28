@@ -26,4 +26,17 @@
         android:text="Time: 00:00"
         android:layout_marginBottom="15dp"
         android:textSize="20dp"></TextView>
+
+    <TextView
+        android:fontFamily="casual"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/book_tv"
+        android:layout_below="@id/date_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BOOK NAME"
+        android:layout_marginBottom="15dp"
+        android:textSize="20dp"></TextView>
 </RelativeLayout>

@@ -23,6 +23,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -180,6 +182,7 @@ public class History extends AppCompatActivity {
                 holder = new ViewHolder();
                 holder.txtName = (TextView) convertView.findViewById(R.id.time_tv);
                 holder.txtCityState = (TextView) convertView.findViewById(R.id.date_tv);
+                holder.txBookName = (TextView) convertView.findViewById(R.id.book_tv);
 
                 convertView.setTag(holder);
             } else {
@@ -191,6 +194,7 @@ public class History extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
             String formattedDate = sdf.format(date);
 
+            holder.txBookName.setText("Book Name: " + searchArrayList.get(position).getBookName());
             holder.txtName.setText("Date: " + formattedDate);
             holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter().toString() + " minutes");
 
@@ -200,6 +204,7 @@ public class History extends AppCompatActivity {
         class ViewHolder {
             TextView txtName;
             TextView txtCityState;
+            TextView txBookName;
         }
     }
 }
