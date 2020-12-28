@@ -18,10 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Score" />
-        <activity android:name=".About" />
-        <activity android:name=".History" />
-        <activity android:name=".Timer" />
+        <activity android:name=".Score"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".About"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".History"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Timer"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

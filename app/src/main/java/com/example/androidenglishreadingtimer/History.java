@@ -92,11 +92,10 @@ public class History extends AppCompatActivity {
             }
         });  // END OF NAVIGATION SETUP
 
-
         double totalSum = Math.floor(arraySum(GlobalArrayList) * 100) / 100;
         totalTime = findViewById(R.id.sum_tv);
         if(totalSum >= 60) {
-            totalTime.setText("Total Time: " + totalSum/60 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
+            totalTime.setText("Total Time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
         }
         else
         {
