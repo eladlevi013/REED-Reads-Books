@@ -94,7 +94,7 @@ public class History extends AppCompatActivity {
         double totalSum = Math.floor(arraySum(GlobalArrayList) * 100) / 100;
         totalTime = findViewById(R.id.sum_tv);
         if(totalSum >= 60) {
-            totalTime.setText("Total Time: " + totalSum/60 + " hours, and: " + totalSum%60 +  " minutes");
+            totalTime.setText("Total Time: " + totalSum/60 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
         }
         else
         {
