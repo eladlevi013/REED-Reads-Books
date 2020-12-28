@@ -1,4 +1,4 @@
-package com.example.androidenglishreadingtimer;
+    package com.example.androidenglishreadingtimer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -147,7 +147,7 @@ public class Timer extends AppCompatActivity {
 
                     case R.id.about:
                         if(isRunning){
-                            Toast.makeText(Timer.this, "You Can't Change Activity While is Timer is Running!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Timer.this, "You Can't Change Activity While The Timer is Running!", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {

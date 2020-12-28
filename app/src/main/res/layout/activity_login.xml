@@ -26,6 +26,7 @@
         android:layout_height="200dp"></ImageView>
 
     <TextView
+        android:gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/welcome_message1"
@@ -35,10 +36,11 @@
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:text="Let&#39;s go, click START and get reading!"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:layout_centerHorizontal="true"></TextView>
 
     <TextView
+        android:gravity="center"
         android:layout_above="@id/welcome_message1"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
