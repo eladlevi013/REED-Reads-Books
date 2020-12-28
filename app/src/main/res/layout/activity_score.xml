@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="Last Week: 0.0"
         android:textStyle="bold"
-        android:textSize="30dp"></TextView>
+        android:textSize="25dp"></TextView>
 
     <Button
         android:layout_centerHorizontal="true"
