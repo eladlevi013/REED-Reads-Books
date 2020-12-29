@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eed1ff"
+    tools:context=".about_page">
+
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/linear"
+        android:background="@drawable/blue_textbox"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="18dp"
+            android:fontFamily="sans-serif"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="אפליקציה זו פותחה על ידי תלמידי יב - אלעד לוי ונוה ששוני מבית ספר סולם צור במטה אשר. \n האפליקציה פותחה כדי למשחק את הקריאה באנגלית בבית בזמן הקורונה 2020-2021 \n 70,000 תלמידים ישתמשו באפליקציה לעידוד קריאה והנאה. \n כל הכבוד לתלמידינו! \n בברכת בריאות,\n ג'ודי סגל \n מפקחת על הוראת אנגלית \n המנהל לחינוך התיישבותי פנימייתי ועליית הנוער \n תשפ''א"
+            android:background="#c87aff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/supertzor"></ImageView>
+
+        <ImageView
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/sulamTzor"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/logo"></ImageView>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/design_default_color_primary_dark"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</RelativeLayout>

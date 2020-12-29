@@ -94,18 +94,30 @@ public class History extends AppCompatActivity {
 
         double totalSum = Math.floor(arraySum(GlobalArrayList) * 100) / 100;
         totalTime = findViewById(R.id.sum_tv);
+        double totalWeek = ClassHelper.getWeekSum(GlobalArrayList);
+
         if(totalSum >= 60) {
             totalTime.setText("Total Time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
         }
-        else
-        {
-            totalTime.setText("Total Time: " + totalSum + " minutes");
-        }
+//        if(totalSum >= 60) {
+//            totalTime.setText("Total Time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
+//        }
+//        else if()
+//        {
+//            totalTime.setText("Total Time: " + totalSum + " minutes");
+//        }
 
-        double averageTimePerRead = totalSum / GlobalArrayList.size();
-        averageTimePerRead = Math.floor(averageTimePerRead * 100) / 100;
+
+
         averageTime = findViewById(R.id.average_tv);
-        averageTime.setText("Average reading time: " + averageTimePerRead + " min");
+        if(totalSum != 0) {
+            double averageTimePerRead = totalSum / GlobalArrayList.size();
+            averageTimePerRead = Math.floor(averageTimePerRead * 100) / 100;
+            averageTime.setText("Average reading time: " + averageTimePerRead + " min");
+        }
+        else {
+            averageTime.setText("Average reading time: 0.0 min");
+        }
 
         double monthSum = monthSumFunction(GlobalArrayList);
         monthSum_tv = findViewById(R.id.sumMonth_tv);
@@ -193,7 +205,7 @@ public class History extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
             String formattedDate = sdf.format(date);
 
-            holder.txBookName.setText("Book Name: " + searchArrayList.get(position).getBookName());
+            holder.txBookName.setText("Book Title: " + searchArrayList.get(position).getBookName());
             holder.txtName.setText("Date: " + formattedDate);
             holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter().toString() + " minutes");
 

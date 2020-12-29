@@ -36,7 +36,7 @@ import java.util.Collections;
 public class About extends AppCompatActivity {
 
     public ArrayList<Result> GlobalArrayList = null;
-    TextView statsView, amazing_tv;
+    TextView statsView, amazing_tv, about_button;
     Button setNewName;
     TextView displayName;
     public double GOAL = 120;
@@ -57,6 +57,14 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         setNewName = findViewById(R.id.setNameButton);
 
+        about_button = findViewById(R.id.about_btn);
+        about_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(About.this, about_page.class);
+                startActivity(intent);
+            }
+        });
             //Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
@@ -73,13 +81,19 @@ public class About extends AppCompatActivity {
 
         amazing_tv = findViewById(R.id.yourAmazing);
 
-        if(WEEKLY_SUM < 60 && WEEKLY_SUM > 30)
-            amazing_tv.setText("WOW You are amazing! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
-        else if(WEEKLY_SUM > 60)
-            amazing_tv.setText("WOW You are an expert reader! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
-        else if(WEEKLY_SUM < 30) {
-            amazing_tv.setText("Ready to read more?");
-        }
+//        if(WEEKLY_SUM < 60 && WEEKLY_SUM > 30)
+//            amazing_tv.setText("WOW You are amazing! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
+//        else if(WEEKLY_SUM > 60)
+//            amazing_tv.setText("WOW You are an expert reader! You read " +  Math.floor(WEEKLY_SUM * 100) / 100 +  " minutes this week!");
+//        else if(WEEKLY_SUM < 30) {
+//            amazing_tv.setText("Ready to read more?");
+//        }
+
+            if(WEEKLY_SUM <= 15) amazing_tv.setText("Keep reading, you're doing great!");
+        else if(WEEKLY_SUM >= 15 && WEEKLY_SUM <= 30) amazing_tv.setText("You are a great reader! KEEP IT UP");
+        else if(WEEKLY_SUM >= 30 && WEEKLY_SUM <= 45) amazing_tv.setText("WOW! You are a fantastic reader! KEEP IT UP");
+        else if(WEEKLY_SUM >= 45 && WEEKLY_SUM <= 60) amazing_tv.setText("You are an amazing reader! Proud of you!");
+        else if(WEEKLY_SUM >= 60) amazing_tv.setText("You are a reading SUPERSTAR!");
 
             setNewName.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -207,7 +207,7 @@ public class Timer extends AppCompatActivity {
     public void popupBookName() {
         //DIALOG
         AlertDialog.Builder alert = new AlertDialog.Builder(Timer.this);
-        alert.setTitle("Enter the Name of Your Book ");
+        alert.setTitle("Enter the Title of your Book: ");
         alert.setCancelable(false);
 
         // Set an EditText view to get user input
