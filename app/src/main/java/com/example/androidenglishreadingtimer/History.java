@@ -39,9 +39,10 @@ import java.util.Date;
 
 public class History extends AppCompatActivity {
 
+    public String FULL_NAME= "My Reading List";
     public ArrayList<Result> GlobalArrayList = null;
     public ListView listView;
-    public TextView totalTime, averageTime, monthSum_tv, weekSum_tv;
+    public TextView totalTime, averageTime, monthSum_tv, weekSum_tv, myReadinList;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -59,6 +60,14 @@ public class History extends AppCompatActivity {
         if (GlobalArrayList == null) {
             Toast.makeText(this, "Creating A new one!", Toast.LENGTH_SHORT).show();
             GlobalArrayList = new ArrayList<>();
+        }
+        FULL_NAME = sharedPreferences.getString("FULL_NAME" , "Default Name");
+
+        myReadinList = findViewById(R.id.readingLog);
+        if(!FULL_NAME.toString().matches("Default Name")) {
+            if(!FULL_NAME.matches(".*[^a-zA-Z].*")) {
+                myReadinList.setText(FULL_NAME + "'s Reading List");
+            }
         }
 
         Collections.reverse(GlobalArrayList);
