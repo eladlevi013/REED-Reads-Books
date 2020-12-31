@@ -65,7 +65,7 @@ public class History extends AppCompatActivity {
 
         myReadinList = findViewById(R.id.readingLog);
         if(!FULL_NAME.toString().matches("Default Name")) {
-            if(!FULL_NAME.matches(".*[^a-zA-Z].*")) {
+            if(!FULL_NAME.matches(".*[^a-zA-Z ].*")) {
                 myReadinList.setText(FULL_NAME + "'s Reading List");
             }
         }
