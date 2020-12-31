@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,17 +22,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
@@ -92,7 +84,7 @@ public class History extends AppCompatActivity {
                         return true;
 
                     case R.id.about:
-                        startActivity(new Intent(getApplicationContext(), About.class));
+                        startActivity(new Intent(getApplicationContext(), Goals.class));
                         overridePendingTransition(0, 0);
                         return true;
 
@@ -115,8 +107,6 @@ public class History extends AppCompatActivity {
 //        {
 //            totalTime.setText("Total Time: " + totalSum + " minutes");
 //        }
-
-
 
         averageTime = findViewById(R.id.average_tv);
         if(totalSum != 0) {

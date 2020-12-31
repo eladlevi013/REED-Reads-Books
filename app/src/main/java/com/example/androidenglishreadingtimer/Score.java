@@ -71,6 +71,15 @@ public class Score extends AppCompatActivity {
             }
         });
 
+        Button exit = findViewById(R.id.exit_button);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Score.this, ExitActivity.class);
+                startActivity(intent);
+            }
+        });
+
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("ResultList", null);

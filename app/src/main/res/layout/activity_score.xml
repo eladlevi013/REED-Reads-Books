@@ -71,6 +71,20 @@
         android:background="@drawable/bg_button"
         android:text="back"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/back_button"/>
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_button"
+        android:text="exit"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
@@ -78,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:id="@+id/back_button" />
+        android:id="@+id/exit_button"/>
 
     <Button
         android:layout_centerHorizontal="true"

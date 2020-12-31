@@ -11,29 +11,22 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class About extends AppCompatActivity {
+public class Goals extends AppCompatActivity {
 
     public ArrayList<Result> GlobalArrayList = null;
     TextView statsView, amazing_tv, about_button;
@@ -54,14 +47,14 @@ public class About extends AppCompatActivity {
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_goals);
         setNewName = findViewById(R.id.setNameButton);
 
         about_button = findViewById(R.id.about_btn);
         about_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(About.this, about_page.class);
+                Intent intent =  new Intent(Goals.this, about_page.class);
                 startActivity(intent);
             }
         });
@@ -99,11 +92,11 @@ public class About extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     //DIALOG
-                    AlertDialog.Builder alert = new AlertDialog.Builder(About.this);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(Goals.this);
                     alert.setTitle("Enter Your Full Name");
 
                     // Set an EditText view to get user input
-                    final EditText input = new EditText(About.this);
+                    final EditText input = new EditText(Goals.this);
                     alert.setView(input);
 
                     alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -140,11 +133,11 @@ public class About extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(About.this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(Goals.this);
                 alert.setTitle("Set A New Reading Minutes Goal For This Week");
 
                 // Set an EditText view to get user input
-                final EditText input = new EditText(About.this);
+                final EditText input = new EditText(Goals.this);
                 input.setInputType(2);
                 alert.setView(input);
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eed1ff"
+    tools:context=".ExitActivity">
+
+    <TextView
+        android:fontFamily="casual"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:id="@+id/text"
+        android:gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_above="@+id/gif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:text="Come back soon to read even more!"
+        android:layout_centerHorizontal="true"></TextView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:src="@drawable/gif2"
+        android:id="@+id/gif"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

@@ -42,7 +42,7 @@ public class about_page extends AppCompatActivity {
                         return true;
 
                     case R.id.about:
-                        startActivity(new Intent(getApplicationContext(), About.class));
+                        startActivity(new Intent(getApplicationContext(), Goals.class));
                         overridePendingTransition(0, 0);
                         return true;
 
