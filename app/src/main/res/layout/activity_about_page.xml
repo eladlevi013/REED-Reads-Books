@@ -25,7 +25,7 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="אפליקציה זו פותחה על ידי תלמידי יב - אלעד לוי ונוה ששוני מבית ספר סולם צור במטה אשר. \n האפליקציה פותחה כדי למשחק את הקריאה באנגלית בבית בזמן הקורונה 2020-2021 \n 70,000 תלמידים ישתמשו באפליקציה לעידוד קריאה והנאה. \n כל הכבוד לתלמידינו! \n בברכת בריאות,\n ג'ודי סגל \n מפקחת על הוראת אנגלית \n המנהל לחינוך התיישבותי פנימייתי ועליית הנוער \n תשפ''א"
-            android:background="#c87aff"
+            android:background="#e8b8ff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></TextView>
     </RelativeLayout>
@@ -57,6 +57,28 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:src="@drawable/logo"></ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_above="@id/bottom_navigation"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/github_logo"></ImageView>
+
+        <TextView
+            android:id="@+id/source"
+            android:text="SOURCE CODE GITHUB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

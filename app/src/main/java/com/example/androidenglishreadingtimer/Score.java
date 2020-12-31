@@ -52,11 +52,24 @@ public class Score extends AppCompatActivity {
     Button button;
     String time, BOOK_NAME;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        Button back = findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();

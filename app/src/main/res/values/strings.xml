@@ -1,4 +1,5 @@
 <resources>
+    <string name="link">&lt;a href="http://www.google.com">Google&lt;/a></string>
     <string name="app_name">Android English Reading Timer</string>
     <string name="clickTimer">Click <b>TIMER</b> To Read More</string>
     <string name="ul_string_here"><u>My Reading Log</u></string>

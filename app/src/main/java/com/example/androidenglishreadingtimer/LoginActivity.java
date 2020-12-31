@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     public String FULL_NAME = "Default Name";
-    private static final int SPLASH_TIME_OUT = 2000;
+    private static final int SPLASH_TIME_OUT = 1200;
     TextView welcome;
 
     @Override

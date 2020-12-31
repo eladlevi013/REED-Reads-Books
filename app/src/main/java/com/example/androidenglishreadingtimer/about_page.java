@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,5 +50,12 @@ public class about_page extends AppCompatActivity {
                 return false;
             }
         });  // END OF NAVIGATION SETUP
+
+        String str_text = "<a href=https://github.com/elad3vii13/Android-English-Reading-Timer>elad3vii13</a>";
+        TextView link;
+        link = (TextView) findViewById(R.id.source);
+        link.setMovementMethod(LinkMovementMethod.getInstance());
+        link.setText(Html.fromHtml(str_text));
+        link.setLinkTextColor(Color.rgb(82,0, 166));
     }
 }
