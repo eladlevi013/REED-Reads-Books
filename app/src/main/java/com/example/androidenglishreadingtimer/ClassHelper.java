@@ -15,7 +15,7 @@ public class ClassHelper {
         double sum = 0;
         int i = 0;
         final LocalDate date = LocalDate.now();
-        final LocalDate dateMinus7Days = date.minusDays(7);
+        final LocalDate dateMinus7Days = date.minusDays(6);
 
         long date7beforemilli = dateMinus7Days.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
         if(globalArrayList != null) {
