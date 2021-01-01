@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -37,6 +38,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -150,19 +152,25 @@ public class Score extends AppCompatActivity {
     private void openScreenshot() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        //Uri uri = Uri.fromFile(imageFile);
-        Uri photoURI = FileProvider.getUriForFile(Score.this, getApplicationContext().getPackageName() + ".provider", takeScreenshot(findViewById(android.R.id.content).getRootView(), "filename"));
-        intent.setDataAndType(photoURI, "image/*");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(intent);
+        //Uri uri = Uri.fromFile(imageFile);
+        try {
+            File file = takeScreenshot(findViewById(android.R.id.content).getRootView(), "file");
+            Uri photoURI = FileProvider.getUriForFile(Score.this, getApplicationContext().getPackageName() + ".provider", file);
+            intent.setDataAndType(photoURI, "image/*");
+            startActivity(intent);
+        }
+        catch (Exception e) {
+            Toast.makeText(Score.this, "You Cannot do that, please do that manualy " + e, Toast.LENGTH_SHORT).show();
+        }
     }
 
-    protected static File takeScreenshot(View view, String filename){ // DOES NOT WORK
+    protected File takeScreenshot(View view, String filename){ // DOES NOT WORK
         Date date = new Date();
         CharSequence format = DateFormat.format("yyyy-MM-dd:mm:ss", date);
 
         try{
-            String dirPath = Environment.getExternalStorageDirectory().toString()+"/good";
+            String dirPath = getExternalFilesDir(null).toString()+"/good";
             File fileDir = new File(dirPath);
             if (!fileDir.exists()) {
                 boolean mkdir=fileDir.mkdir();
