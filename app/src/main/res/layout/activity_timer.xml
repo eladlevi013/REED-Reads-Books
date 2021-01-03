@@ -42,13 +42,14 @@
         android:id="@+id/timer_chrone"></Chronometer>
 
     <ImageView
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bookshelf"
+        android:src="@drawable/shelf"
         android:layout_above="@id/button_rest"
         android:layout_below="@id/timer_chrone"></ImageView>
 
