@@ -47,8 +47,19 @@
         android:src="@drawable/supertzor"></ImageView>
 
         <ImageView
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/education"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/education"></ImageView>
+
+
+        <ImageView
+            android:layout_marginLeft="20dp"
             android:id="@+id/sulamTzor"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
