@@ -16,9 +16,9 @@
         android:id="@+id/time_tv"
         android:textStyle="bold"
         android:textColor="#505050"
-        android:text="00:00"
+        android:text="00:00:00"
         android:textSize="45dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></TextView>

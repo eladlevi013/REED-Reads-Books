@@ -29,7 +29,6 @@ android {
 }
 
 dependencies {
-
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
     implementation 'com.google.code.gson:gson:2.8.6'

@@ -157,6 +157,7 @@ public class Timer extends AppCompatActivity {
         });
 
         chron = findViewById(R.id.timer_chrone);
+        chron.setText("00:00:00");
         btn = findViewById(R.id.button);
         btn_rest = findViewById(R.id.button_rest);
 
@@ -175,6 +176,16 @@ public class Timer extends AppCompatActivity {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 chron = chronometer;
+
+                // HOURS!
+                long time = SystemClock.elapsedRealtime() - chronometer.getBase();
+                int h   = (int)(time /3600000);
+                int m = (int)(time - h*3600000)/60000;
+                int s= (int)(time - h*3600000- m*60000)/1000 ;
+                String hh = h < 10 ? "0"+h: h+"";
+                String mm = m < 10 ? "0"+m: m+"";
+                String ss = s < 10 ? "0"+s: s+"";
+                chronometer.setText(hh+":"+mm+":"+ss);
             }
         });
 
@@ -191,6 +202,7 @@ public class Timer extends AppCompatActivity {
 
                 } else {
                     isRunning = true;
+
                     chron.setBase(SystemClock.elapsedRealtime());
                     chron.start();
                     btn.setText("Stop");

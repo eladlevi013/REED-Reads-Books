@@ -103,10 +103,11 @@ public class History extends AppCompatActivity {
 //        if(totalSum >= 60) {
 //            totalTime.setText("Total Time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
 //        }
-//        else if()
-//        {
-//            totalTime.setText("Total Time: " + totalSum + " minutes");
-//        }
+
+        else
+        {
+            totalTime.setText("Total Time: " + totalSum + " minutes");
+        }
 
         averageTime = findViewById(R.id.average_tv);
         if(totalSum != 0) {
