@@ -134,7 +134,7 @@ public class Goals extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(Goals.this);
-                alert.setTitle("Set A New Reading Minutes Goal For This Week");
+                alert.setTitle("Set A New Reading Hours Goal For This Week");
 
                 // Set an EditText view to get user input
                 final EditText input = new EditText(Goals.this);
@@ -149,7 +149,7 @@ public class Goals extends AppCompatActivity {
 
                                 if(Double.parseDouble(input.getText().toString()) >= WEEKLY_SUM) {
                                     GOAL = Double.parseDouble(input.getText().toString());
-                                    statsView.setText(WEEKLY_SUM + "/ " + GOAL);
+                                    statsView.setText((Math.floor(WEEKLY_SUM/GOAL * 100) + "%"));
                                     createPiChart();
                                     saveShared();
                                 }
@@ -214,7 +214,8 @@ public class Goals extends AppCompatActivity {
         // Set Progress
         circularProgressBar.setProgress((float) WEEKLY_SUM);
          WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
-        statsView.setText((float) (Math.floor(WEEKLY_SUM * 100) / 100) + "/ " + GOAL);
+         //Math.floor(WEEKLY_SUM * 100) / 100
+        statsView.setText(Math.floor(WEEKLY_SUM/GOAL * 100) + "%");
 
         // or with animation
         circularProgressBar.setProgressWithAnimation((float) (Math.floor(WEEKLY_SUM * 100) / 100), (long) 1000); // =1s

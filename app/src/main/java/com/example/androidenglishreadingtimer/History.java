@@ -207,7 +207,11 @@ public class History extends AppCompatActivity {
 
             holder.txBookName.setText("Book Title: " + searchArrayList.get(position).getBookName());
             holder.txtName.setText("Date: " + formattedDate);
-            holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter().toString() + " minutes");
+
+            if(searchArrayList.get(position).getChronmeter() > 60)
+                holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter()/60 + " hours, and " + searchArrayList.get(position).getChronmeter()%60 + "minutes");
+            else
+                holder.txtCityState.setText("Time: " + searchArrayList.get(position).getChronmeter() + " minutes");
 
             return convertView;
         }
