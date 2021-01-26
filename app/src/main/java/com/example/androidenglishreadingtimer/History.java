@@ -98,7 +98,7 @@ public class History extends AppCompatActivity {
         double totalWeek = ClassHelper.getWeekSum(GlobalArrayList);
 
         if(totalSum >= 60) {
-            totalTime.setText("Total Time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
+            totalTime.setText("Total reading time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
         }
 //        if(totalSum >= 60) {
 //            totalTime.setText("Total Time: " + Math.floor(totalSum/60 * 100) / 100 + " hours, and: " + Math.floor(totalSum%60 * 100) / 100 +  " minutes");
@@ -106,18 +106,18 @@ public class History extends AppCompatActivity {
 
         else
         {
-            totalTime.setText("Total Time: " + totalSum + " minutes");
+            totalTime.setText("Total reading time: " + totalSum + " minutes");
         }
 
-        averageTime = findViewById(R.id.average_tv);
-        if(totalSum != 0) {
-            double averageTimePerRead = totalSum / GlobalArrayList.size();
-            averageTimePerRead = Math.floor(averageTimePerRead * 100) / 100;
-            averageTime.setText("Average reading time: " + averageTimePerRead + " min");
-        }
-        else {
-            averageTime.setText("Average reading time: 0.0 min");
-        }
+//        averageTime = findViewById(R.id.average_tv);
+//        if(totalSum != 0) {
+//            double averageTimePerRead = totalSum / GlobalArrayList.size();
+//            averageTimePerRead = Math.floor(averageTimePerRead * 100) / 100;
+//            averageTime.setText("Average reading time: " + averageTimePerRead + " min");
+//        }
+//        else {
+//            averageTime.setText("Average reading time: 0.0 min");
+//        }
 
         double monthSum = monthSumFunction(GlobalArrayList);
         monthSum_tv = findViewById(R.id.sumMonth_tv);

@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:text="WOW You are amazing! You read 30 minutes this week!"
         android:layout_above="@id/clickTimer"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:gravity="center"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="20dp"
