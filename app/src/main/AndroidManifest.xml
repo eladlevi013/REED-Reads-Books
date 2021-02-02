@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.androidenglishreadingtimer">
+    package="com.minhalreads.androidenglishreadingtimer">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,7 +14,6 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidEnglishReadingTimer">
-        <activity android:name=".ExitActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -26,9 +25,10 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".about_page" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.minhalreads.androidenglishreadingtimer.ExitActivity"></activity>
+        <activity android:name="com.minhalreads.androidenglishreadingtimer.about_page" />
+        <activity android:name="com.minhalreads.androidenglishreadingtimer.LoginActivity" />
+        <activity android:name="com.minhalreads.androidenglishreadingtimer.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,16 +36,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Score"
+            android:name="com.minhalreads.androidenglishreadingtimer.Score"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Goals"
+            android:name="com.minhalreads.androidenglishreadingtimer.Goals"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".History"
+            android:name="com.minhalreads.androidenglishreadingtimer.History"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Timer"
+            android:name="com.minhalreads.androidenglishreadingtimer.Timer"
             android:screenOrientation="portrait" />
     </application>
 
