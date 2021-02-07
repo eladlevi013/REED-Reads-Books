@@ -39,33 +39,41 @@ import nl.dionsegijn.konfetti.models.Size;
 
 public class Score extends AppCompatActivity {
 
-    private static final String TAG = "0";
     ArrayList<Result> GlobalArrayList;
-    TextView fullname_tv, weekSum_tv, BookName_tv;
-    Button button;
-    String time, BOOK_NAME;
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+    TextView fullName_tv, weekSum_tv, bookName_tv;
+    Button share_btn, back_btn, exit_btn;
+    String time, bookName;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+        back_btn = findViewById(R.id.back_button);
+        exit_btn = findViewById(R.id.exit_button);
+        fullName_tv = findViewById(R.id.name);
+        weekSum_tv = findViewById(R.id.weekSum);
+        share_btn = findViewById(R.id.button_share);
+        final KonfettiView konfettiView = findViewById(R.id.viewKonfetti);
+        konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(10.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(12, 5f))
+                .setPosition(0, (float) konfettiView.getWidth() + 1000f, -50f, -50f)
+                .streamFor(100, 5000L);
 
-        Button back = findViewById(R.id.back_button);
-        back.setOnClickListener(new View.OnClickListener() {
+        back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
 
-        Button exit = findViewById(R.id.exit_button);
-        exit.setOnClickListener(new View.OnClickListener() {
+        exit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Score.this, ExitActivity.class);
@@ -78,71 +86,40 @@ public class Score extends AppCompatActivity {
         String json = sharedPreferences.getString("ResultList", null);
         Type type = new TypeToken<ArrayList<Result>>() {}.getType();
         GlobalArrayList = gson.fromJson(json, type);
-        if(GlobalArrayList == null) {
+        if(GlobalArrayList == null)
             GlobalArrayList = new ArrayList<>();
-        }
-
         Collections.reverse(GlobalArrayList);
 
-        fullname_tv = findViewById(R.id.name);
-        fullname_tv.setText(sharedPreferences.getString("FULL_NAME", "Default Name"));
-
-        weekSum_tv = findViewById(R.id.weekSum);
         float weekSum = (float) ClassHelper.getWeekSum(GlobalArrayList);
         String weekString = String.valueOf(weekSum);
+
+        bookName = getIntent().getStringExtra("book_name");
+        bookName_tv = findViewById(R.id.book_name_tv);
+        bookName_tv.setText("Book: " + bookName);
         weekSum_tv.setText("Total this Week: " + weekString + " min");
-
-        BOOK_NAME = getIntent().getStringExtra("book_name");
-        BookName_tv = findViewById(R.id.book_name_tv);
-        BookName_tv.setText("Book: " + BOOK_NAME);
-
+        fullName_tv.setText(sharedPreferences.getString("FULL_NAME", "Default Name"));
         time = getIntent().getStringExtra("time");
         TextView textView = findViewById(R.id.time_tv);
         textView.setText(time);
-        final KonfettiView konfettiView = findViewById(R.id.viewKonfetti);
 
-        konfettiView.build()
-                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                .setDirection(10.0, 359.0)
-                .setSpeed(1f, 5f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
-                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
-                .addSizes(new Size(12, 5f))
-                .setPosition(0, (float) konfettiView.getWidth() + 1000f, -50f, -50f)
-                .streamFor(100, 5000L);
-
-        verifyStoragePermission(Score.this);
-
-        button = findViewById(R.id.button_share);
-        button.setOnClickListener(new View.OnClickListener() {
+        share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                double stoppedMilliseconds = 0;
-                String array[] = time.toString().split(":");
-                if (array.length == 2) {
-                    stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000
-                            + Integer.parseInt(array[1]) * 1000;
-                } else if (array.length == 3) {
-                    stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000
-                            + Integer.parseInt(array[1]) * 60 * 1000
-                            + Integer.parseInt(array[2]) * 1000;
-                }
-
-                stoppedMilliseconds = stoppedMilliseconds/60000;
-                stoppedMilliseconds = Math.floor(stoppedMilliseconds * 100) / 100;
-
+                verifyStoragePermission(Score.this);
                 openScreenshot();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void openScreenshot() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        //Uri uri = Uri.fromFile(imageFile);
         try {
             File file = takeScreenshot(findViewById(android.R.id.content).getRootView(), "file");
             Uri photoURI = FileProvider.getUriForFile(Score.this, getApplicationContext().getPackageName() + ".provider", file);
@@ -154,22 +131,19 @@ public class Score extends AppCompatActivity {
         }
     }
 
-    protected File takeScreenshot(View view, String filename){ // DOES NOT WORK
+    protected File takeScreenshot(View view, String filename){
         Date date = new Date();
         CharSequence format = DateFormat.format("yyyy-MM-dd:mm:ss", date);
-
         try{
             String dirPath = getExternalFilesDir(null).toString()+"/good";
             File fileDir = new File(dirPath);
             if (!fileDir.exists()) {
                 boolean mkdir=fileDir.mkdir();
             }
-
             String path = dirPath+"/" + filename+ "-" + format + ".jpeg";
             view.setDrawingCacheEnabled(true);
             Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
             view.setDrawingCacheEnabled(false);
-
             File imageFile = new File(path);
             FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
             int quality =100;
@@ -177,7 +151,6 @@ public class Score extends AppCompatActivity {
             fileOutputStream.flush();
             fileOutputStream.close();
             return imageFile;
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -194,12 +167,10 @@ public class Score extends AppCompatActivity {
 
     public static void verifyStoragePermission(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
         if (permission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity,
-                    PERMISSION_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE);
+                PERMISSION_STORAGE,
+                REQUEST_EXTERNAL_STORAGE);
         }
     }
-
 }

@@ -27,9 +27,83 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:text="@string/readyToread"
         android:layout_centerHorizontal="true"></TextView>
+
+    <TextView
+        android:layout_marginBottom="30dp"
+        android:layout_above="@id/circularProgressBar"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WEEKLY GOAL: "
+        android:textStyle="bold"
+        android:id="@+id/goal_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"></TextView>
+
+    <Button
+        android:layout_above="@id/circularProgressBar"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentRight="true"
+        android:text="set"
+        android:id="@+id/setButton"
+        android:background="@drawable/bg_button"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:layout_centerInParent="true"
+        android:id="@+id/circularProgressBar"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:cpb_background_progressbar_color="#b6bbd8"
+        app:cpb_background_progressbar_width="5dp"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progressbar_color="#3f51b5"
+        app:cpb_progressbar_width="10dp"
+        app:cpb_round_border="false" />
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:id="@+id/statsView"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEXT"
+        android:layout_marginLeft="100dp"></TextView>
+
+    <TextView
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/yourAmazing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WOW You are amazing! You read 30 minutes this week!"
+        android:layout_above="@id/clickTimer"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></TextView>
+
+    <TextView
+        android:id="@+id/clickTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clickTimer"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/setNameButton"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></TextView>
 
     <Button
         android:layout_alignParentLeft="true"
@@ -63,80 +137,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></Button>
 
-    <TextView
-        android:layout_marginBottom="30dp"
-        android:layout_above="@id/circularProgressBar"
-        android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="WEEKLY GOAL: "
-        android:textStyle="bold"
-        android:id="@+id/goal_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="25dp"></TextView>
-
-    <Button
-        android:layout_above="@id/circularProgressBar"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentRight="true"
-        android:text="set"
-        android:id="@+id/setButton"
-        android:background="@drawable/bg_button"
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></Button>
-
-    <com.mikhaellopez.circularprogressbar.CircularProgressBar
-        android:layout_centerInParent="true"
-        android:id="@+id/circularProgressBar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:cpb_background_progressbar_color="#b6bbd8"
-        app:cpb_background_progressbar_width="5dp"
-        app:cpb_progress_direction="to_right"
-        app:cpb_progressbar_color="#3f51b5"
-        app:cpb_progressbar_width="10dp"
-        app:cpb_round_border="false" />
-
-    <TextView
-        android:layout_centerInParent="true"
-        android:textSize="25dp"
-        android:id="@+id/statsView"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEXT"
-        android:layout_marginLeft="100dp"></TextView>
-
-    <TextView
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/yourAmazing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="WOW You are amazing! You read 30 minutes this week!"
-        android:layout_above="@id/clickTimer"
-        android:textSize="25dp"
-        android:gravity="center"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"></TextView>
-
-    <TextView
-        android:id="@+id/clickTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/clickTimer"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/setNameButton"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"></TextView>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -146,5 +146,4 @@
         app:menu="@menu/menu_navigation"
         android:id="@+id/bottom_navigation"
         app:itemBackground="@color/design_default_color_primary_dark"></com.google.android.material.bottomnavigation.BottomNavigationView>
-
 </RelativeLayout>

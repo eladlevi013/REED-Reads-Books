@@ -14,22 +14,21 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public String FULL_NAME = "Default Name";
+    public String fullName = "Default Name";
     private static final int SPLASH_TIME_OUT = 1200;
-    TextView welcome;
+    TextView welcome_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        welcome = findViewById(R.id.welcome_tv);
+        welcome_tv = findViewById(R.id.welcome_tv);
 
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-        FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
+        fullName = sharedPreferences.getString("FULL_NAME", "Default Name");
 
-        if (sharedPreferences.getString("FULL_NAME", "Default Name") != "Default Name") {
-            welcome.setText("Welcome Back, " + FULL_NAME);
-            //Toast.makeText(this, "Hey, " + FULL_NAME , Toast.LENGTH_SHORT).show();
+        if (fullName != "Default Name") {
+            welcome_tv.setText("Welcome Back, " + fullName);
             waitToAcitivity();
         }
         else {
@@ -49,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void popupFunction() {
-        //DIALOG
         AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
         alert.setTitle("Enter Your Full Name");
         alert.setCancelable(false);
@@ -64,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(input.getText().toString().matches("")) {
                     Toast.makeText(LoginActivity.this, "You can change your name in the 'about' page", Toast.LENGTH_SHORT).show();
-                    FULL_NAME = input.getText().toString();
+                    fullName = input.getText().toString();
                     //FULL_NAME = input.getText().toString();
                     SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -73,11 +71,11 @@ public class LoginActivity extends AppCompatActivity {
                     waitToAcitivity();
                 }
                 else{
-                    FULL_NAME = input.getText().toString();
-                    Toast.makeText(LoginActivity.this, "Welcome, " + FULL_NAME, Toast.LENGTH_SHORT).show();
+                    fullName = input.getText().toString();
+                    Toast.makeText(LoginActivity.this, "Welcome, " + fullName, Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("FULL_NAME", FULL_NAME);
+                    editor.putString("FULL_NAME", fullName);
                     editor.apply();
                     waitToAcitivity();
                 }

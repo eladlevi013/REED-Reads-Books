@@ -28,7 +28,6 @@ public class ClassHelper {
 //        return sum;
 //    }
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static double getWeekSum(ArrayList<Result> globalArrayList) {
         double sum =0;

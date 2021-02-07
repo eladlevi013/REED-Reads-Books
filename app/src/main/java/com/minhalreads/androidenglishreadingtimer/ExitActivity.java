@@ -32,6 +32,4 @@ public class ExitActivity extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);
     }
-
-
 }

@@ -29,12 +29,10 @@ import java.util.Collections;
 public class Goals extends AppCompatActivity {
 
     public ArrayList<Result> GlobalArrayList = null;
-    TextView statsView, amazing_tv, about_button;
-    Button setNewName;
-    TextView displayName;
-    public double GOAL = 120;
+    public TextView statsView, amazing_tv, about_button, displayName;
+    public Button setNewName;
+    public double GOAL = 20, WEEKLY_SUM=0;
     public String FULL_NAME = "Default Name";
-    public double WEEKLY_SUM=0;
 
     public void saveShared(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
@@ -45,18 +43,19 @@ public class Goals extends AppCompatActivity {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goals);
-        setNewName = findViewById(R.id.setNameButton);
-        about_button = findViewById(R.id.about_btn);
-        about_button.setOnClickListener(new View.OnClickListener() {
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_goals);
+            setNewName = findViewById(R.id.setNameButton);
+            about_button = findViewById(R.id.about_btn);
+
+            about_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(Goals.this, about_page.class);
                 startActivity(intent);
             }
-        });
+          });
 
         //Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
@@ -167,13 +166,10 @@ public class Goals extends AppCompatActivity {
 
         displayName = findViewById(R.id.displayNames);
         displayName.setText(FULL_NAME);
-
         //Initialize Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         //Set Timer Selected
         bottomNavigationView.setSelectedItemId(R.id.about);
-
         // Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -183,20 +179,16 @@ public class Goals extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), Timer.class));
                         overridePendingTransition(0,0);
                         return true;
-
                     case R.id.history:
                         startActivity(new Intent(getApplicationContext(), History.class));
                         overridePendingTransition(0,0);
                         return true;
-
                     case R.id.about:
                         return true;
-
                 }
                 return false;
             }
         });
-
         createPiChart();
     }
 
@@ -205,13 +197,10 @@ public class Goals extends AppCompatActivity {
         CircularProgressBar circularProgressBar = findViewById(R.id.circularProgressBar);
         // Set Progress
         circularProgressBar.setProgress((float) WEEKLY_SUM);
-         WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
-         //Math.floor(WEEKLY_SUM * 100) / 100
-        statsView.setText(Math.floor(WEEKLY_SUM/GOAL * 100) + "% Goal: " + GOAL);
-
+        WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
+        statsView.setText(Math.floor(WEEKLY_SUM/GOAL * 100) + "% | Goal: " + GOAL);
         // or with animation
-        circularProgressBar.setProgressWithAnimation((float) (Math.floor(WEEKLY_SUM * 100) / 100), (long) 1000); // =1s
-
+        circularProgressBar.setProgressWithAnimation((float) (Math.floor(WEEKLY_SUM * 100) / 100), (long) 1000);
         // Set Progress Max
         circularProgressBar.setProgressMax((float) GOAL);
         // Set ProgressBar Color
@@ -220,18 +209,15 @@ public class Goals extends AppCompatActivity {
         circularProgressBar.setProgressBarColorStart(Color.GRAY);
         circularProgressBar.setProgressBarColorEnd(Color.BLUE);
         circularProgressBar.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
-
         // Set background ProgressBar Color
         circularProgressBar.setBackgroundProgressBarColor(Color.GRAY);
         // or with gradient
         circularProgressBar.setBackgroundProgressBarColorStart(Color.WHITE);
         circularProgressBar.setBackgroundProgressBarColorEnd(Color.BLUE);
         circularProgressBar.setBackgroundProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
-
         // Set Width
         circularProgressBar.setProgressBarWidth(7f); // in DP
         circularProgressBar.setBackgroundProgressBarWidth(3f); // in DP
-
         // Other
         circularProgressBar.setRoundBorder(true);
         circularProgressBar.setStartAngle(180f);

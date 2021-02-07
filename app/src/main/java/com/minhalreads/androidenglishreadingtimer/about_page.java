@@ -18,14 +18,12 @@ public class about_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_page);
+        setContentView(R.layout.activity_about);
 
         //Initialize Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         //Set Timer Selected
         bottomNavigationView.setSelectedItemId(R.id.about);
-
         // Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -49,7 +47,7 @@ public class about_page extends AppCompatActivity {
                 }
                 return false;
             }
-        });  // END OF NAVIGATION SETUP
+        });  // End of navigation setup
 
         String str_text = "<a href=https://github.com/elad3vii13/Android-English-Reading-Timer>elad3vii13</a>";
         TextView link;
