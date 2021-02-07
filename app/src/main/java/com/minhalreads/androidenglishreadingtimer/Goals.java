@@ -49,7 +49,6 @@ public class Goals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
         setNewName = findViewById(R.id.setNameButton);
-
         about_button = findViewById(R.id.about_btn);
         about_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +57,8 @@ public class Goals extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-            //Duplicated Code
+
+        //Duplicated Code
         SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("ResultList", null);
@@ -207,7 +207,7 @@ public class Goals extends AppCompatActivity {
         circularProgressBar.setProgress((float) WEEKLY_SUM);
          WEEKLY_SUM = ClassHelper.getWeekSum(GlobalArrayList);
          //Math.floor(WEEKLY_SUM * 100) / 100
-        statsView.setText(Math.floor(WEEKLY_SUM/GOAL * 100) + "%");
+        statsView.setText(Math.floor(WEEKLY_SUM/GOAL * 100) + "% Goal: " + GOAL);
 
         // or with animation
         circularProgressBar.setProgressWithAnimation((float) (Math.floor(WEEKLY_SUM * 100) / 100), (long) 1000); // =1s
