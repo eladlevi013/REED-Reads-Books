@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100" height="100" src="https://play-lh.googleusercontent.com/8rnByMRmn5-iaGCx9BneFauYC5z2I0KpW2l1wlN5gFxKlbuR6XD0NTShXFg_NNH0MsRA=s180-rw">
+  <img width="150" height="150" src="https://play-lh.googleusercontent.com/8rnByMRmn5-iaGCx9BneFauYC5z2I0KpW2l1wlN5gFxKlbuR6XD0NTShXFg_NNH0MsRA=s180-rw">
 </p>
 
 This app helps students track their English book reading. They are encouraged to set a timer and read read read!
