@@ -5,7 +5,16 @@
 This app helps students track their English book reading. They are encouraged to set a timer and read read read!
 Google Play Link: https://play.google.com/store/apps/details?id=com.minhalreads.androidenglishreadingtimer
 
-<br>
+
+# Usage
+```
+With this application, you can: 
+* Record your reading time
+* Share it with friends
+* Set a weekly reading goal
+* Watch your reading history
+```
+
 <br>
 
 <p align="center" width="70%">
