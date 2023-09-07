@@ -3,13 +3,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.minhalreads.androidenglishreadingtimer"
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 3
         versionName "3.0"
 
@@ -26,6 +25,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.minhalreads.androidenglishreadingtimer'
 }
 
 dependencies {
