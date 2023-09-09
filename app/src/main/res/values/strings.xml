@@ -1,8 +1,26 @@
 <resources>
-    <string name="link">&lt;a href="http://www.google.com">Google&lt;/a></string>
     <string name="app_name">REED Reads Books</string>
     <string name="clickTimer">Click <b>TIMER</b> To Read More</string>
     <string name="ul_string_here"><u>My Reading Log</u></string>
     <string name="readyToread"><u>MY READING GOALS:</u></string>
-    <string name="text1">מיוצר על ידי אלעד לוי מתיכון סולם צור בשביל המינהל לחינוך התיישובתי פנימייתי ועליית הנוער קורונה 2020/2021</string>
+    <string name="text1">מיוצר על ידי אלעד לוי מתיכון סולם צור
+        בשביל המינהל לחינוך התיישובתי פנימייתי ועליית הנוער קורונה 2020/2021</string>
+    <string name="no_book_name">No Book Name</string>
+    <string name="shared_preference_name">shared preference</string>
+    <string name="reading_records_prefs_title">ResultList</string>
+    <string name="full_name_prefs_title">FULL_NAME</string>
+    <string name="full_name_default_value">Default Name</string>
+    <string name="timer_start_button_text">Start</string>
+    <string name="timer_stop_button_text">Stop</string>
+    <string name="enter_book_title_popup_text">Enter the Title of your Book: </string>
+    <string name="default_book_title">Default Value</string>
+    <string name="github_project_link">https://github.com/eladlevi013/REED-Reads-Books</string>
+    <string name="github_app_creator">eladlevi013</string>
+    <string name="goal_prefs_title">goal</string>
+    <string name="change_activity_timer_running">You can\'t change activity while timer is running</string>
+    <string name="goodbye_page_text">Come back soon to read even more!</string>
+    <string name="enter_name_msg">Enter Your Full Name</string>
+    <string name="set_new_goal_text">Set A New Reading Goal For This Week</string>
+    <string name="change_name_location_reminder">You can change your name in the \'about\' page"</string>
+    <string name="screenshot_error_msg">You Cannot do that, please do that manually</string>
 </resources>

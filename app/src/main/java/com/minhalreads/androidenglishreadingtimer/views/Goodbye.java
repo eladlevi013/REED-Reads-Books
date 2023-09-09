@@ -1,15 +1,16 @@
-package com.minhalreads.androidenglishreadingtimer;
+package com.minhalreads.androidenglishreadingtimer.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.TextView;
 
-public class ExitActivity extends AppCompatActivity {
+import com.minhalreads.androidenglishreadingtimer.R;
+import com.minhalreads.androidenglishreadingtimer.helpers.SharedPreferencesManager;
 
+public class Goodbye extends AppCompatActivity {
     private static final int SPLASH_TIME_OUT = 2000;
 
     @Override
@@ -17,16 +18,14 @@ public class ExitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exit);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preference", MODE_PRIVATE);
-        String FULL_NAME = sharedPreferences.getString("FULL_NAME", "Default Name");
-        TextView message = findViewById(R.id.text);
-        message.setText(FULL_NAME + ", Come back soon to read even more!");
+        TextView tvMessage = findViewById(R.id.text);
+        String fullName = SharedPreferencesManager.getFullName(this);
+        tvMessage.setText(fullName + ", " + getString(R.string.goodbye_page_text));
+        Handler handler = new Handler(Looper.getMainLooper());
 
-        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //Do something after 100ms
                 finishAffinity();
                 System.exit(0);
             }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eed1ff"
-    tools:context=".LoginActivity">
+    tools:context=".views.Welcome">
 
     <TextView
         android:layout_marginLeft="10dp"
@@ -17,7 +17,7 @@
         android:text="Welcome"
         android:textSize="25dp"
         android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"></TextView>
+        android:layout_centerHorizontal="true"/>
 
     <pl.droidsonroids.gif.GifImageView
         android:src="@drawable/tenor"
@@ -37,7 +37,7 @@
         android:layout_alignParentBottom="true"
         android:text="Let&#39;s go, click START and get reading!"
         android:textSize="15dp"
-        android:layout_centerHorizontal="true"></TextView>
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:gravity="center"
@@ -51,5 +51,5 @@
         android:layout_marginBottom="10dp"
         android:text="Ready to read?"
         android:textSize="20dp"
-        android:layout_centerHorizontal="true"></TextView>
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

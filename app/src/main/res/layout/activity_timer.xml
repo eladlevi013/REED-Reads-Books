@@ -6,7 +6,7 @@
     android:screenOrientation="portrait"
     android:layout_height="match_parent"
     android:background="#eed1ff"
-    tools:context=".History">
+    tools:context=".views.History">
 
     <TextView
         android:gravity="center"

@@ -24,37 +24,37 @@
         </provider>
 
         <activity
-            android:name="com.minhalreads.androidenglishreadingtimer.ExitActivity"
-            android:exported="true"/>
+            android:name="com.minhalreads.androidenglishreadingtimer.views.Goodbye"
+            android:exported="false"/>
         <activity
-            android:name="com.minhalreads.androidenglishreadingtimer.about_page"
-            android:exported="true"/>
+            android:name="com.minhalreads.androidenglishreadingtimer.views.About"
+            android:exported="false"/>
         <activity
-            android:name="com.minhalreads.androidenglishreadingtimer.LoginActivity"
-            android:exported="true"/>
+            android:name="com.minhalreads.androidenglishreadingtimer.views.Welcome"
+            android:exported="false"/>
         <activity
-            android:name="com.minhalreads.androidenglishreadingtimer.SplashActivity"
+            android:name="com.minhalreads.androidenglishreadingtimer.views.Splash"
             android:exported="true">
-            <intent-filter>
+            <intent-filter android:exported="true">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:exported="true"
-            android:name="com.minhalreads.androidenglishreadingtimer.Score"
+            android:exported="false"
+            android:name="com.minhalreads.androidenglishreadingtimer.views.Score"
             android:screenOrientation="portrait" />
         <activity
-            android:exported="true"
-            android:name="com.minhalreads.androidenglishreadingtimer.Goals"
+            android:exported="false"
+            android:name="com.minhalreads.androidenglishreadingtimer.views.Goals"
             android:screenOrientation="portrait" />
         <activity
-            android:exported="true"
-            android:name="com.minhalreads.androidenglishreadingtimer.History"
+            android:exported="false"
+            android:name="com.minhalreads.androidenglishreadingtimer.views.History"
             android:screenOrientation="portrait" />
         <activity
-            android:exported="true"
-            android:name="com.minhalreads.androidenglishreadingtimer.Timer"
+            android:exported="false"
+            android:name="com.minhalreads.androidenglishreadingtimer.views.Timer"
             android:screenOrientation="portrait" />
     </application>
 </manifest>

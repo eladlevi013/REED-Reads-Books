@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="#eed1ff"
     android:layout_height="match_parent"
-    tools:context=".Score">
+    tools:context=".views.Score">
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/viewKonfetti"

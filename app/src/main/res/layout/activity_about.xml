@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eed1ff"
-    tools:context=".about_page">
+    tools:context=".views.About">
 
     <RelativeLayout
         android:layout_marginTop="15dp"
@@ -86,6 +86,7 @@
             android:src="@drawable/github_logo"></ImageView>
 
         <TextView
+            android:autoLink="web"
             android:id="@+id/source"
             android:text="source code"
             android:layout_width="wrap_content"

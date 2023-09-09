@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:background="#eed1ff"
     android:layout_height="match_parent"
-    tools:context=".History">
+    tools:context=".views.History">
 
     <TextView
         android:textColor="@color/black"
-        android:layout_below="@id/sumMonth_tv"
+        android:layout_below="@id/month_sum_tv"
         android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -19,47 +19,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="The Sum Of The Time "
-        android:textSize="18dp"></TextView>
-
-<!--    <TextView-->
-<!--        android:fontFamily="casual"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        android:id="@+id/average_tv"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        android:layout_below="@id/sum_tv"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="The Average Of The Time "-->
-<!--        android:textSize="15dp"></TextView>-->
+        android:textSize="18dp"/>
 
     <TextView
         android:textColor="@color/black"
         android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/sumMonth_tv"
+        android:id="@+id/month_sum_tv"
         android:layout_marginTop="0dp"
-        android:layout_below="@id/sumWeek_tv"
+        android:layout_below="@id/week_sum_tv"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="The Sum Of The Month"
-        android:textSize="18dp"></TextView>
+        android:textSize="18dp"/>
 
     <TextView
         android:textColor="@color/black"
         android:fontFamily="casual"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/sumWeek_tv"
+        android:id="@+id/week_sum_tv"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="The Sum Of the Week"
-        android:textSize="18dp"></TextView>
+        android:textSize="18dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -69,12 +56,12 @@
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/menu_navigation"
         android:id="@+id/bottom_navigation"
-        app:itemBackground="@color/design_default_color_primary_dark"></com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:itemBackground="@color/design_default_color_primary_dark"/>
 
     <TextView
         android:fontFamily="casual"
         android:textColor="@color/design_default_color_primary_dark"
-        android:id="@+id/readingLog"
+        android:id="@+id/reading_log_msg_tv"
         android:layout_marginTop="15dp"
         android:layout_below="@id/sum_tv"
         android:layout_width="wrap_content"
@@ -82,14 +69,13 @@
         android:textStyle="bold"
         android:textSize="25dp"
         android:text="@string/ul_string_here"
-        android:layout_centerHorizontal="true"></TextView>
+        android:layout_centerHorizontal="true"/>
 
     <ListView
         android:layout_marginTop="10dp"
         android:id="@+id/ls"
-        android:layout_below="@+id/readingLog"
+        android:layout_below="@+id/reading_log_msg_tv"
         android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
-
+        android:layout_height="match_parent"/>
 </RelativeLayout>
